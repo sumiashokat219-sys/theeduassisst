@@ -1,0 +1,51 @@
+---
+const steps = [
+  {
+    number: "01",
+    title: "Discover your course idea",
+    description: "We start by diving deep into your knowledge and defining your target audience and core transformation."
+  },
+  {
+    number: "02",
+    title: "Structure the curriculum",
+    description: "Our experts map out every lesson and module to ensure a clear, logical, and effective learning journey."
+  },
+  {
+    number: "03",
+    title: "Build the learning experience",
+    description: "We create the materials and set up the platform, focusing on high engagement and ease of use."
+  },
+  {
+    number: "04",
+    title: "Launch and improve",
+    description: "We help you go live and then iterate based on learner feedback for long-term success."
+  }
+];
+---
+<section id="how-it-works" class="py-24 bg-slate-900 text-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-20">
+      <h2 class="text-3xl md:text-5xl font-bold mb-6">How It Works</h2>
+      <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+        A streamlined process designed to take you from idea to launch in record time.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-4 gap-8">
+      {steps.map((step, index) => (
+        <div class="relative">
+          {index !== steps.length - 1 && (
+            <div class="hidden md:block absolute top-12 left-full w-full h-[2px] bg-slate-800 -z-0"></div>
+          )}
+          <div class="relative z-10">
+            <div class="text-4xl font-bold text-indigo-500 mb-6">{step.number}</div>
+            <h3 class="text-xl font-bold mb-4">{step.title}</h3>
+            <p class="text-slate-400 leading-relaxed">
+              {step.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
