@@ -11,3 +11,18 @@ html {
 body {
   @apply antialiased text-slate-900 bg-[#F9FAFB];
 }
+
+@layer utilities {
+  .animation-delay-200 {
+    animation-delay: 0.2s;
+  }
+  .animation-delay-300 {
+    animation-delay: 0.3s;
+  }
+  .animation-delay-500 {
+    animation-delay: 0.5s;
+  }
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+}
