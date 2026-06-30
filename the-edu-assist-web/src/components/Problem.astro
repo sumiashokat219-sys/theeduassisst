@@ -1,0 +1,45 @@
+---
+const problems = [
+  {
+    title: "Too many ideas, no clear structure",
+    description: "You have the expertise, but organizing it into a logical flow that makes sense for students is the hardest part.",
+    icon: "M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+  },
+  {
+    title: "Content is scattered across documents",
+    description: "Your knowledge is trapped in various slides, videos, and notes. Bringing it all together feels like a massive chore.",
+    icon: "M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"
+  },
+  {
+    title: "Course platforms feel confusing",
+    description: "Kajabi, Teachable, Thinkific... the tech setup is a barrier that keeps you from launching your vision.",
+    icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+  }
+];
+---
+<section class="py-24 bg-slate-50">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6 leading-tight">
+        Your knowledge is valuable, but turning it into a course can feel overwhelming.
+      </h2>
+      <p class="text-lg text-slate-600">
+        We bridge the gap between your expertise and a finished product that your audience will love.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {problems.map((problem) => (
+        <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 rounded-xl bg-red-50 text-red-600 flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={problem.icon} />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-4">{problem.title}</h3>
+          <p class="text-slate-600 leading-relaxed">{problem.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
