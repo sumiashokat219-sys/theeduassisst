@@ -1,28 +1,28 @@
 ---
 const steps = [
   {
-    number: "01",
-    title: "Discover your course idea",
-    description: "We start by diving deep into your knowledge and defining your target audience and core transformation."
+    title: "Strategic Discovery",
+    description: "We dive deep into your unique expertise and audience needs to define a high-impact course concept.",
+    icon: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
   },
   {
-    number: "02",
-    title: "Structure the curriculum",
-    description: "Our experts map out every lesson and module to ensure a clear, logical, and effective learning journey."
+    title: "Curriculum Mapping",
+    description: "Our experts architect a logical, engaging learning journey that ensures student success and transformation.",
+    icon: "M9 20l-5-4V3l5 4 6-4 5 4v13l-5-4-6 4z"
   },
   {
-    number: "03",
-    title: "Build the learning experience",
-    description: "We create the materials and set up the platform, focusing on high engagement and ease of use."
+    title: "Experience Building",
+    description: "We handle the technical heavy lifting, from LMS setup to asset creation, ensuring a premium learner experience.",
+    icon: "M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 113 3L12 15l-4 1 1-4 9.5-9.5z"
   },
   {
-    number: "04",
-    title: "Launch and improve",
-    description: "We help you go live and then iterate based on learner feedback for long-term success."
+    title: "Launch & Iteration",
+    description: "Go live with confidence and use real-world feedback to continuously refine and scale your impact.",
+    icon: "M13 10V3L4 14h7v7l9-11h-7z"
   }
 ];
 ---
-<section id="how-it-works" class="py-24 bg-slate-900 text-white">
+<section id="how-it-works" class="py-24 bg-slate-900 text-white overflow-hidden">
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-20">
       <h2 class="text-3xl md:text-5xl font-bold mb-6">How It Works</h2>
@@ -31,21 +31,70 @@ const steps = [
       </p>
     </div>
 
-    <div class="grid md:grid-cols-4 gap-8">
-      {steps.map((step, index) => (
-        <div class="relative">
-          {index !== steps.length - 1 && (
-            <div class="hidden md:block absolute top-12 left-full w-full h-[2px] bg-slate-800 -z-0"></div>
-          )}
-          <div class="relative z-10">
-            <div class="text-4xl font-bold text-indigo-500 mb-6">{step.number}</div>
-            <h3 class="text-xl font-bold mb-4">{step.title}</h3>
-            <p class="text-slate-400 leading-relaxed">
-              {step.description}
-            </p>
+    <div class="relative">
+      <!-- Vertical line -->
+      <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-slate-800 -translate-x-1/2"></div>
+
+      <div class="space-y-12 md:space-y-24">
+        {steps.map((step, index) => (
+          <div class={`relative flex flex-col md:flex-row items-center timeline-step opacity-0 translate-y-8 transition-all duration-700 ease-out ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
+            <!-- Mobile/Left line marker -->
+            <div class="absolute left-4 md:left-1/2 top-8 md:top-1/2 w-8 h-8 rounded-full bg-indigo-600 border-4 border-slate-900 -translate-x-1/2 -translate-y-1/2 z-10 flex items-center justify-center text-xs font-bold shadow-lg shadow-indigo-500/20">
+              {index + 1}
+            </div>
+
+            <!-- Content Container -->
+            <div class={`w-full md:w-1/2 pl-12 md:pl-0 ${index % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16 md:text-left'}`}>
+              <div class={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-500 mb-6 ${index % 2 === 0 ? 'md:ml-auto' : ''}`}>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={step.icon} />
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold mb-4">{step.title}</h3>
+              <p class="text-slate-400 text-lg leading-relaxed">
+                {step.description}
+              </p>
+            </div>
+
+            <!-- Spacer for desktop -->
+            <div class="hidden md:block md:w-1/2"></div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+  .timeline-step.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  function initObserver() {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, observerOptions);
+
+    const steps = document.querySelectorAll('.timeline-step');
+    steps.forEach(step => observer.observe(step));
+  }
+
+  // Initial load
+  initObserver();
+
+  // For Astro view transitions if they are used
+  document.addEventListener('astro:after-swap', initObserver);
+</script>
