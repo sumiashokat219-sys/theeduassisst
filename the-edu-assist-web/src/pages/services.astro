@@ -199,7 +199,7 @@ const faqs = [
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, i) => (
-            <div class="group relative bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal-up" style={`transition-delay: ${i * 50}ms`}>
+            <div class="group relative glass-card p-10 rounded-[2.5rem] shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal-up" style={`transition-delay: ${i * 50}ms`}>
               <!-- Glow Effect -->
               <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-blue-500/5 rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
@@ -313,9 +313,9 @@ const faqs = [
           <div class="grid lg:grid-cols-6 gap-8 relative z-10">
             {workflow.map((item, i) => (
               <div class="group flex flex-col items-center text-center reveal-up" style={`transition-delay: ${i * 100}ms`}>
-                <div class="w-16 h-16 rounded-full bg-white border-4 border-slate-50 flex items-center justify-center text-indigo-600 font-extrabold text-xl mb-6 shadow-xl relative transition-all duration-300 group-hover:border-indigo-100">
-                   <div class="absolute inset-0 rounded-full bg-indigo-600 scale-0 group-hover:scale-100 transition-transform duration-300"></div>
-                   <span class="relative z-10 group-hover:text-white transition-colors duration-300">{item.step}</span>
+                    <div class="w-16 h-16 rounded-full bg-white border-4 border-slate-50 flex items-center justify-center text-indigo-600 font-extrabold text-xl mb-6 shadow-xl relative transition-all duration-500 group-hover:border-indigo-100 group-hover:scale-110">
+                       <div class="absolute inset-0 rounded-full bg-indigo-600 scale-0 group-hover:scale-100 transition-transform duration-500"></div>
+                       <span class="relative z-10 group-hover:text-white transition-colors duration-500">{item.step}</span>
                 </div>
                 <h4 class="text-lg font-bold text-slate-900 mb-3">{item.title}</h4>
                 <p class="text-sm text-slate-500 leading-relaxed">{item.description}</p>

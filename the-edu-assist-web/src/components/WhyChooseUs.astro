@@ -31,8 +31,8 @@ const features = [
         </div>
         <div class="lg:w-2/3 grid sm:grid-cols-2 gap-6">
            {features.map((f, i) => (
-             <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-xl transition-all duration-300 reveal-right" style={`transition-delay: ${i * 100}ms`}>
-                <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-indigo-600 shadow-sm mb-6">
+             <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal-right group" style={`transition-delay: ${i * 100}ms`}>
+                <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-indigo-600 shadow-sm mb-6 group-hover:scale-110 transition-transform duration-500">
                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                 </div>
                 <h4 class="text-xl font-bold text-slate-900 mb-2">{f.title}</h4>
