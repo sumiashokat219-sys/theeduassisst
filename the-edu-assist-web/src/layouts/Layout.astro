@@ -24,6 +24,61 @@ import Navbar from '../components/Navbar.astro';
 	<body class="bg-[#F9FAFB] text-slate-900 font-sans selection:bg-indigo-100 selection:text-indigo-700">
 		<Navbar />
 		<slot />
+
+    <script>
+      // Global intersection observer for reveal animations
+      function initScrollReveals() {
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+
+              // Handle counters
+              const counters = entry.target.querySelectorAll('.counter');
+              counters.forEach(counter => {
+                if (counter.classList.contains('counter-started')) return;
+                counter.classList.add('counter-started');
+
+                const targetText = counter.getAttribute('data-target');
+                if (!targetText) return;
+                const target = parseInt(targetText);
+                if (isNaN(target)) return;
+
+                let count = 0;
+                const duration = 2000; // 2 seconds
+                const increment = target / (duration / 16);
+
+                const updateCount = () => {
+                  count += increment;
+                  if (count < target) {
+                    (counter as HTMLElement).innerText = Math.ceil(count).toString();
+                    requestAnimationFrame(updateCount);
+                  } else {
+                    (counter as HTMLElement).innerText = target.toString();
+                  }
+                };
+                updateCount();
+              });
+            }
+          });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-left, .reveal-right, .reveal-up').forEach(el => {
+          observer.observe(el);
+        });
+      }
+
+      // Initial load
+      initScrollReveals();
+
+      // For Astro view transitions if they are used
+      document.addEventListener('astro:after-swap', initScrollReveals);
+    </script>
 	</body>
 </html>
 
@@ -37,4 +92,27 @@ import Navbar from '../components/Navbar.astro';
 		font-family: 'Inter', system-ui, sans-serif;
 		scroll-behavior: smooth;
 	}
+
+  /* Global Reveal Animation Styles */
+  .reveal-left, .reveal-right, .reveal-up {
+    opacity: 0;
+    transition: all 1s ease-out;
+  }
+  .reveal-left { transform: translateX(-50px); }
+  .reveal-right { transform: translateX(50px); }
+  .reveal-up { transform: translateY(50px); }
+
+  .revealed {
+    opacity: 1 !important;
+    transform: translate(0, 0) !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-left, .reveal-right, .reveal-up {
+      animation: none !important;
+      transition: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
 </style>
