@@ -1,0 +1,440 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+
+const services = [
+  {
+    title: "Course Strategy",
+    description: "Define your unique value proposition and market positioning for maximum impact.",
+    benefits: ["Market Analysis", "Pricing Strategy", "Student Avatars"],
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>`
+  },
+  {
+    title: "Curriculum Design",
+    description: "Scientifically structured learning paths that ensure student transformation.",
+    benefits: ["Learning Objectives", "Module Outlining", "Assessment Design"],
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.168.477 4 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4 1.253"></path></svg>`
+  },
+  {
+    title: "Course Creation",
+    description: "Full-service production including video editing, slides, and workbooks.",
+    benefits: ["Professional Editing", "Slide Design", "Actionable PDF Assets"],
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>`
+  },
+  {
+    title: "Kajabi Setup",
+    description: "End-to-end technical configuration of your Kajabi ecosystem.",
+    benefits: ["Site architecture", "Product setup", "Offer creation"],
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>`
+  },
+  {
+    title: "LMS Implementation",
+    description: "Expert setup of Thinkific, Teachable, or custom WordPress LMS solutions.",
+    benefits: ["Platform selection", "Student migration", "Custom branding"],
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>`
+  },
+  {
+    title: "Content Conversion",
+    description: "Transform existing webinars, PDFs, and workshops into a structured course.",
+    benefits: ["Asset auditing", "Format optimization", "Learning path mapping"],
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>`
+  },
+  {
+    title: "AI-Powered Support",
+    description: "Leverage cutting-edge AI to scale your content and student interactions.",
+    benefits: ["AI content drafts", "Automated tutoring", "Smart assessments"],
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>`
+  },
+  {
+    title: "Course Audits",
+    description: "Identify friction points and optimize your existing course for better results.",
+    benefits: ["UX review", "Completion rate analysis", "Feedback synthesis"],
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`
+  },
+  {
+    title: "Launch Support",
+    description: "Full-scale technical and strategic assistance during your course launch.",
+    benefits: ["Tech troubleshooting", "Live event support", "Analytics tracking"],
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>`
+  },
+  {
+    title: "Funnels & Automation",
+    description: "Seamless student journeys from lead magnet to enrollment.",
+    benefits: ["Email sequences", "Payment integration", "CRM automation"],
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>`
+  }
+];
+
+const whyUs = [
+  { title: "Premium Aesthetics", description: "Your course will look as professional as the expertise you provide.", icon: "bg-indigo-50 text-indigo-600", svg: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>` },
+  { title: "Instructional Science", description: "We don't just dump content; we design for transformation and results.", icon: "bg-blue-50 text-blue-600", svg: `<path fill-rule="evenodd" d="M12 2a10 10 0 100 20 10 10 0 000-20zM9 12l2 2 4-4" clip-rule="evenodd"></path>` },
+  { title: "Technical Mastery", description: "From Kajabi to custom LMS, we handle the complex tech for you.", icon: "bg-indigo-50 text-indigo-600", svg: `<path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>` },
+  { title: "AI Integration", description: "Future-proof your educational business with smart AI implementations.", icon: "bg-blue-50 text-blue-600", svg: `<path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path>` },
+  { title: "Rapid Deployment", description: "Go from idea to launch in weeks, not months, with our proven systems.", icon: "bg-indigo-50 text-indigo-600", svg: `<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>` },
+  { title: "White-Glove Support", description: "Dedicated account management ensuring your vision is executed perfectly.", icon: "bg-blue-50 text-blue-600", svg: `<path fill-rule="evenodd" d="M18 10a6 6 0 11-12 0 6 6 0 0112 0zm-2 2.71a9.96 9.96 0 005.59 2.11 1 1 0 01.41 1.69 11.95 11.95 0 01-19.99 0 1 1 0 01.41-1.69A9.96 9.96 0 008 12.71 6 6 0 0116 12.71z" clip-rule="evenodd"></path>` }
+];
+
+const workflow = [
+  { step: "01", title: "Consultation", description: "We dive deep into your goals, audience, and content to create a roadmap." },
+  { step: "02", title: "Planning", description: "Defining the curriculum structure and technical requirements." },
+  { step: "03", title: "Design", description: "Crafting the visual identity and learning experience." },
+  { step: "04", title: "Build", description: "Developing the platform, course assets, and automation." },
+  { step: "05", title: "Launch", description: "Going live with a full support team by your side." },
+  { step: "06", title: "Support", description: "Ongoing optimization and scaling for your course." }
+];
+
+const comparison = [
+  { feature: "Professional Design", without: "Generic/Cluttered", with: "Premium SaaS Aesthetic" },
+  { feature: "Tech Management", without: "Hours of DIY Frustration", with: "100% Handled for You" },
+  { feature: "Instructional Quality", without: "Information Dump", with: "Scientifically Structured" },
+  { feature: "Time to Market", without: "6-12 Months", with: "4-8 Weeks" },
+  { feature: "Scalability", without: "Limited by Manual Work", with: "AI-Powered & Automated" }
+];
+
+const faqs = [
+  { q: "Which platforms do you support?", a: "We specialize in Kajabi, Thinkific, Teachable, and WordPress LMS. However, our strategic and design services are platform-agnostic." },
+  { q: "How long does a typical build take?", a: "Our Complete Course Build package typically takes 8 weeks from start to finish." },
+  { q: "Do I need to have all my content ready?", a: "No! We can work with you to develop your content from scratch or repurpose existing assets." },
+  { q: "Do you offer marketing services?", a: "We focus on the product and funnel infrastructure. While we don't run ads, we build the high-converting funnels that make your ads successful." }
+];
+---
+
+<Layout title="Services | TheEduAssist">
+  <main class="pt-20">
+    <!-- 1. PREMIUM HERO -->
+    <section id="top" class="relative py-24 md:py-32 overflow-hidden bg-white">
+      <!-- Animated Blobs -->
+      <div class="absolute top-0 -left-20 w-96 h-96 bg-indigo-100 rounded-full blur-3xl opacity-50 animate-pulse"></div>
+      <div class="absolute bottom-0 -right-20 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-50 animate-pulse" style="animation-delay: 2s;"></div>
+
+      <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+          <div class="reveal-up">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-600 text-sm font-bold mb-8">
+              <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-600"></span>
+              </span>
+              Premium Course Solutions
+            </div>
+            <h1 class="text-6xl md:text-7xl font-extrabold text-slate-900 tracking-tight leading-tight mb-8">
+              Every Service You Need to <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-blue-500">Scale Your Impact</span>
+            </h1>
+            <p class="text-xl text-slate-500 leading-relaxed mb-10 max-w-xl">
+              We provide end-to-end services to help experts design, build, and automate high-ticket online courses that deliver real transformation.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="#services" class="px-10 py-5 bg-indigo-600 text-white font-extrabold rounded-2xl hover:shadow-2xl hover:shadow-indigo-200 transition-all hover:-translate-y-1 text-center">
+                Explore Services
+              </a>
+              <a href="/#contact" class="px-10 py-5 bg-white text-slate-900 border border-slate-200 font-extrabold rounded-2xl hover:bg-slate-50 transition-all text-center">
+                Book a Consultation
+              </a>
+            </div>
+          </div>
+
+          <!-- Hero Illustration -->
+          <div class="relative reveal-right">
+            <div class="relative bg-white rounded-[3rem] shadow-2xl border border-slate-100 p-8 md:p-12">
+               <!-- Mock Dashboard -->
+               <div class="space-y-6">
+                 <div class="flex gap-2">
+                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                 </div>
+                 <div class="grid grid-cols-4 gap-4">
+                    <div class="h-12 bg-slate-50 rounded-xl"></div>
+                    <div class="h-12 bg-slate-50 rounded-xl"></div>
+                    <div class="h-12 bg-slate-50 rounded-xl"></div>
+                    <div class="h-12 bg-slate-50 rounded-xl"></div>
+                 </div>
+                 <div class="aspect-video bg-indigo-50 rounded-3xl flex items-center justify-center">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg text-indigo-600">
+                        <svg class="w-8 h-8 ml-1" fill="currentColor" viewBox="0 0 20 20"><path d="M4.516 7.548c0-.923.651-1.67 1.456-1.67H14.03c.805 0 1.456.747 1.456 1.67v4.904c0 .923-.651 1.67-1.456 1.67H5.972c-.805 0-1.456-.747-1.456-1.67V7.548z"></path></svg>
+                    </div>
+                 </div>
+                 <div class="space-y-3">
+                    <div class="h-4 w-1/3 bg-slate-100 rounded-full"></div>
+                    <div class="h-3 w-full bg-slate-50 rounded-full"></div>
+                    <div class="h-3 w-full bg-slate-50 rounded-full"></div>
+                    <div class="h-3 w-2/3 bg-slate-50 rounded-full"></div>
+                 </div>
+               </div>
+
+               <!-- Floating Badges -->
+               <div class="absolute -top-6 -right-6 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-3 animate-bounce">
+                  <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                  </div>
+                  <div>
+                    <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Course Ready</div>
+                    <div class="text-sm font-bold text-slate-900">100% Launch Grade</div>
+                  </div>
+               </div>
+
+               <div class="absolute -bottom-10 -left-10 bg-white p-6 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-4 hidden md:flex">
+                  <div class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                  </div>
+                  <div>
+                    <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Performance</div>
+                    <div class="text-lg font-bold text-slate-900">AI-Optimized</div>
+                  </div>
+               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. SERVICES GRID -->
+    <section id="services" class="py-24 md:py-32 bg-slate-50/50">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-20 reveal-up">
+          <h2 class="text-indigo-600 font-bold tracking-widest uppercase text-sm mb-4">Our Expertise</h2>
+          <h3 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">Comprehensive Course Solutions</h3>
+          <p class="text-xl text-slate-500 max-w-2xl mx-auto">Everything you need to turn your expertise into a world-class educational asset.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service, i) => (
+            <div class="group relative bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal-up" style={`transition-delay: ${i * 50}ms`}>
+              <!-- Glow Effect -->
+              <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-blue-500/5 rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+              <div class="relative z-10">
+                <div class="w-16 h-16 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500" aria-hidden="true">
+                  <Fragment set:html={service.icon} />
+                </div>
+                <h4 class="text-2xl font-bold text-slate-900 mb-4">{service.title}</h4>
+                <p class="text-slate-500 leading-relaxed mb-8">{service.description}</p>
+                <div class="space-y-3">
+                  {service.benefits.map(benefit => (
+                    <div class="flex items-center gap-3 text-sm text-slate-600">
+                      <svg class="w-4 h-4 text-indigo-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                      {benefit}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. FEATURED SERVICE -->
+    <section id="featured" class="py-24 md:py-32 bg-white overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="bg-slate-900 rounded-[3.5rem] p-8 md:p-20 relative overflow-hidden reveal-up">
+          <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-indigo-500/10 to-transparent"></div>
+
+          <div class="grid lg:grid-cols-2 gap-16 items-center relative z-10">
+            <div>
+              <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-indigo-300 text-sm font-bold mb-8">
+                Best Value
+              </div>
+              <h3 class="text-4xl md:text-5xl font-bold text-white mb-8">Complete Course Build Package</h3>
+              <p class="text-xl text-slate-400 mb-10 leading-relaxed">
+                The ultimate white-glove experience. We handle everything from strategy and curriculum to tech build and launch automation.
+              </p>
+
+              <div class="grid grid-cols-2 gap-6 mb-12">
+                <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+                   <div class="text-3xl font-bold text-white mb-1">8 Weeks</div>
+                   <div class="text-sm text-slate-500 uppercase tracking-widest font-bold">Timeline</div>
+                </div>
+                <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+                   <div class="text-3xl font-bold text-white mb-1">100%</div>
+                   <div class="text-sm text-slate-500 uppercase tracking-widest font-bold">Done-for-you</div>
+                </div>
+              </div>
+
+              <a href="/#contact" class="inline-flex items-center gap-3 px-10 py-5 bg-indigo-600 text-white font-extrabold rounded-2xl hover:bg-indigo-500 transition-all">
+                Request Package Details
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+              </a>
+            </div>
+
+            <!-- Timeline Visual -->
+            <div class="space-y-4">
+               {[
+                 { label: "W1-2: Strategy & Structure", width: "w-full" },
+                 { label: "W3-4: Content & Design", width: "w-4/5" },
+                 { label: "W5-6: Tech & Funnels", width: "w-3/4" },
+                 { label: "W7-8: Testing & Launch", width: "w-2/3" }
+               ].map((item, i) => (
+                 <div class="p-5 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-between group hover:bg-white/10 transition-colors">
+                    <span class="text-white font-bold">{item.label}</span>
+                    <div class={`h-2 ${item.width} bg-indigo-600 rounded-full`}></div>
+                 </div>
+               ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. WHY CHOOSE OUR SERVICES -->
+    <section id="why-us" class="py-24 md:py-32 bg-slate-50/50">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-20 reveal-up">
+          <h2 class="text-indigo-600 font-bold tracking-widest uppercase text-sm mb-4">TheEduAssist Edge</h2>
+          <h3 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">Why Work With Us?</h3>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {whyUs.map((feature, i) => (
+            <div class="p-10 rounded-[2.5rem] bg-white border border-slate-100 shadow-sm reveal-up" style={`transition-delay: ${i * 100}ms`}>
+              <div class={`w-12 h-12 rounded-xl ${feature.icon} flex items-center justify-center mb-6`}>
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" set:html={feature.svg} />
+              </div>
+              <h4 class="text-xl font-bold text-slate-900 mb-4">{feature.title}</h4>
+              <p class="text-slate-500 leading-relaxed">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. SERVICE WORKFLOW -->
+    <section id="workflow" class="py-24 md:py-32 bg-white overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-20 reveal-up">
+          <h2 class="text-indigo-600 font-bold tracking-widest uppercase text-sm mb-4">The Process</h2>
+          <h3 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">Your Journey to Launch</h3>
+        </div>
+
+        <div class="relative">
+          <!-- Desktop Timeline Line -->
+          <div class="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-slate-100 -translate-y-1/2"></div>
+
+          <div class="grid lg:grid-cols-6 gap-8 relative z-10">
+            {workflow.map((item, i) => (
+              <div class="group flex flex-col items-center text-center reveal-up" style={`transition-delay: ${i * 100}ms`}>
+                <div class="w-16 h-16 rounded-full bg-white border-4 border-slate-50 flex items-center justify-center text-indigo-600 font-extrabold text-xl mb-6 shadow-xl relative transition-all duration-300 group-hover:border-indigo-100">
+                   <div class="absolute inset-0 rounded-full bg-indigo-600 scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+                   <span class="relative z-10 group-hover:text-white transition-colors duration-300">{item.step}</span>
+                </div>
+                <h4 class="text-lg font-bold text-slate-900 mb-3">{item.title}</h4>
+                <p class="text-sm text-slate-500 leading-relaxed">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. COMPARISON SECTION -->
+    <section id="comparison" class="py-24 md:py-32 bg-white overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-20 reveal-up">
+          <h2 class="text-indigo-600 font-bold tracking-widest uppercase text-sm mb-4">The Comparison</h2>
+          <h3 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">Elevate Your Standard</h3>
+          <p class="text-xl text-slate-500 max-w-2xl mx-auto">Don't settle for "good enough." See how we redefine the course creation experience.</p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8 items-stretch">
+          <!-- The Old Way -->
+          <div class="p-10 md:p-16 rounded-[3rem] bg-slate-50 border border-slate-100 reveal-left">
+            <h4 class="text-2xl font-bold text-slate-400 mb-10 flex items-center gap-3">
+              <span class="w-8 h-8 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center text-sm">✕</span>
+              Without TheEduAssist
+            </h4>
+            <div class="space-y-8">
+              {comparison.map((row) => (
+                <div class="pb-8 border-b border-slate-200 last:border-0">
+                  <div class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-2">{row.feature}</div>
+                  <div class="text-lg text-slate-500 font-medium">{row.without}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- The New Way -->
+          <div class="p-10 md:p-16 rounded-[3rem] bg-indigo-600 text-white shadow-2xl shadow-indigo-200 relative overflow-hidden reveal-right">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+            <h4 class="text-2xl font-bold text-indigo-200 mb-10 flex items-center gap-3 relative z-10">
+              <span class="w-8 h-8 rounded-full bg-white text-indigo-600 flex items-center justify-center text-sm">✓</span>
+              With TheEduAssist
+            </h4>
+            <div class="space-y-8 relative z-10">
+              {comparison.map((row) => (
+                <div class="pb-8 border-b border-indigo-500/30 last:border-0">
+                  <div class="text-sm font-bold text-indigo-300 uppercase tracking-widest mb-2">{row.feature}</div>
+                  <div class="text-xl font-bold">{row.with}</div>
+                </div>
+              ))}
+            </div>
+
+            <div class="mt-12 p-8 rounded-2xl bg-white/10 border border-white/10 backdrop-blur-sm relative z-10">
+               <div class="text-indigo-200 text-sm font-bold mb-2">THE RESULT</div>
+               <div class="text-2xl font-bold">A premium educational asset that scales.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. FAQ -->
+    <section id="faq" class="py-24 md:py-32 bg-slate-50/50">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-20 reveal-up">
+          <h2 class="text-indigo-600 font-bold tracking-widest uppercase text-sm mb-4">FAQ</h2>
+          <h3 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">Service Questions</h3>
+        </div>
+
+        <div class="space-y-4">
+          {faqs.map((faq, i) => (
+            <div class="bg-white rounded-3xl border border-slate-100 overflow-hidden reveal-up" style={`transition-delay: ${i * 100}ms`}>
+              <details class="group">
+                <summary class="flex items-center justify-between p-8 cursor-pointer list-none">
+                  <h4 class="text-xl font-bold text-slate-900">{faq.q}</h4>
+                  <span class="transition-transform duration-300 group-open:rotate-180">
+                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                  </span>
+                </summary>
+                <div class="px-8 pb-8 text-slate-500 leading-relaxed">
+                  {faq.a}
+                </div>
+              </details>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. FINAL CTA -->
+    <section class="py-24 md:py-32 bg-white">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="relative bg-gradient-to-br from-indigo-600 to-blue-700 rounded-[4rem] p-12 md:p-24 overflow-hidden text-center reveal-up">
+           <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+           <div class="relative z-10 max-w-3xl mx-auto">
+             <h2 class="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight">Ready to Build Your Digital Legacy?</h2>
+             <p class="text-xl text-indigo-100 mb-12 opacity-90">Book a free strategy session today and let's map out your path to a premium online course.</p>
+             <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                <a href="/#contact" class="px-12 py-6 bg-white text-indigo-600 font-extrabold rounded-2xl hover:shadow-2xl transition-all hover:-translate-y-1 text-lg">
+                  Book Free Consultation
+                </a>
+                <a href="mailto:hello@theeduassist.com" class="px-12 py-6 bg-transparent text-white border-2 border-white/20 font-extrabold rounded-2xl hover:bg-white/10 transition-all text-lg">
+                  Contact Us
+                </a>
+             </div>
+           </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  /* Custom transitions for reveal animations if needed */
+  .reveal-up, .reveal-left, .reveal-right {
+    opacity: 0;
+  }
+
+  /* These are already handled by global styles in Layout.astro,
+     but we ensure they have the proper initial state here for consistency */
+</style>
