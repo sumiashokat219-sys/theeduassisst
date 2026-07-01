@@ -177,8 +177,8 @@ const expertise = [
              <div class="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-[3rem] p-8 border border-indigo-100">
                 <div class="space-y-8">
                    {['2022', '2023', '2024'].map((year, i) => (
-                     <div class="flex gap-6 items-start">
-                        <div class="w-16 h-16 rounded-2xl bg-white shadow-sm flex items-center justify-center font-bold text-indigo-600 shrink-0 border border-indigo-50">
+                <div class="flex gap-6 items-start reveal-up group" style={`transition-delay: ${i * 150}ms`}>
+                   <div class="w-16 h-16 rounded-2xl bg-white shadow-sm flex items-center justify-center font-bold text-indigo-600 shrink-0 border border-indigo-50 group-hover:scale-110 transition-transform duration-500">
                           {year}
                         </div>
                         <div>
@@ -217,8 +217,8 @@ const expertise = [
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {values.map((value) => (
-            <div class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group reveal-up">
+          {values.map((value, i) => (
+            <div class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group reveal-up" style={`transition-delay: ${i * 100}ms`}>
               <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-50 to-blue-50 text-indigo-600 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={value.icon} />
@@ -323,9 +323,9 @@ const expertise = [
           </div>
 
           <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-             {expertise.map(skill => (
-               <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center justify-center text-center hover:shadow-lg hover:glow-indigo transition-all duration-300 reveal-up">
-                  <div class="h-12 w-12 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-600 mb-4">
+             {expertise.map((skill, i) => (
+               <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center justify-center text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal-up group" style={`transition-delay: ${i * 50}ms`}>
+                  <div class="h-12 w-12 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-600 mb-4 group-hover:scale-110 transition-transform duration-500">
                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d={skill.icon} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                   </div>
                   <div class="font-bold text-slate-900 mb-1">{skill.name}</div>
