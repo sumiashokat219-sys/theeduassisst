@@ -1,51 +1,74 @@
 ---
 const navLinks = [
-  { name: 'Home', href: '/' },
+  { name: 'Home', href: '/#top' },
   { name: 'About', href: '/about' },
   { name: 'Services', href: '/#services' },
   { name: 'How It Works', href: '/#how-it-works' },
+  { name: 'Why Choose Us', href: '/#why-choose-us' },
+  { name: 'Testimonials', href: '/#testimonials' },
+  { name: 'FAQ', href: '/#faq' },
+  { name: 'Contact', href: '/#contact' },
 ];
 ---
 
-<nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent" id="navbar">
+<nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b border-transparent" id="navbar">
   <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
     <a href="/" class="text-2xl font-bold text-slate-900 flex items-center gap-2 group">
-      <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-lg group-hover:scale-110 transition-transform">
+      <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-lg group-hover:scale-110 transition-transform duration-300">
         E
       </div>
-      <span>TheEduAssist</span>
+      <span class="tracking-tight">TheEduAssist</span>
     </a>
 
     <!-- Desktop Menu -->
-    <div class="hidden md:flex items-center gap-8">
+    <div class="hidden lg:flex items-center gap-1">
       {navLinks.map(link => (
-        <a href={link.href} class="text-slate-600 hover:text-indigo-600 font-medium transition-colors">
+        <a
+          href={link.href}
+          class="nav-link px-4 py-2 text-sm text-slate-600 hover:text-indigo-600 font-medium transition-all relative group"
+          data-href={link.href}
+        >
           {link.name}
+          <span class="absolute bottom-1 left-4 right-4 h-0.5 bg-indigo-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left active-indicator"></span>
         </a>
       ))}
-      <a href="/#services" class="px-6 py-2.5 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-100 hover:shadow-indigo-200">
-        Start Now
+    </div>
+
+    <div class="hidden lg:flex items-center">
+       <a href="/#contact" class="px-6 py-2.5 bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-indigo-200 transition-all hover:-translate-y-0.5 active:translate-y-0 text-sm">
+        Book a Free Consultation
       </a>
     </div>
 
     <!-- Mobile Menu Button -->
-    <button class="md:hidden p-2 text-slate-600" id="mobile-menu-button">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-      </svg>
+    <button class="lg:hidden p-2 text-slate-600 relative z-50" id="mobile-menu-button" aria-label="Toggle Menu">
+      <div class="w-6 h-5 relative flex flex-col justify-between">
+        <span class="w-full h-0.5 bg-current transition-all duration-300 origin-left" id="hamburger-top"></span>
+        <span class="w-full h-0.5 bg-current transition-all duration-300" id="hamburger-mid"></span>
+        <span class="w-full h-0.5 bg-current transition-all duration-300 origin-left" id="hamburger-bottom"></span>
+      </div>
     </button>
   </div>
 
   <!-- Mobile Menu -->
-  <div class="md:hidden hidden absolute top-20 left-0 right-0 bg-white border-b border-slate-100 p-6 space-y-4 shadow-xl" id="mobile-menu">
-    {navLinks.map(link => (
-      <a href={link.href} class="block text-slate-600 hover:text-indigo-600 font-medium text-lg">
-        {link.name}
-      </a>
-    ))}
-    <a href="/#services" class="block w-full py-3 bg-indigo-600 text-white font-semibold rounded-xl text-center">
-      Start Now
-    </a>
+  <div class="lg:hidden fixed inset-0 bg-white/95 backdrop-blur-xl z-40 transition-all duration-500 translate-x-full" id="mobile-menu">
+    <div class="flex flex-col h-full pt-24 pb-12 px-8 overflow-y-auto">
+      <div class="flex flex-col gap-4">
+        {navLinks.map(link => (
+          <a href={link.href} class="mobile-nav-link text-2xl font-bold text-slate-900 hover:text-indigo-600 transition-colors border-b border-slate-100 pb-4">
+            {link.name}
+          </a>
+        ))}
+      </div>
+      <div class="mt-auto pt-8">
+        <a href="/#contact" class="mobile-nav-link block w-full py-5 bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-bold rounded-2xl text-center text-lg shadow-xl shadow-indigo-100">
+          Book a Free Consultation
+        </a>
+        <div class="mt-8 text-center text-slate-400 text-sm">
+          © 2024 TheEduAssist
+        </div>
+      </div>
+    </div>
   </div>
 </nav>
 
@@ -53,20 +76,125 @@ const navLinks = [
   const navbar = document.getElementById('navbar');
   const mobileMenuButton = document.getElementById('mobile-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
+  const hamburgerTop = document.getElementById('hamburger-top');
+  const hamburgerMid = document.getElementById('hamburger-mid');
+  const hamburgerBottom = document.getElementById('hamburger-bottom');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
   // Navbar scroll effect
-  window.addEventListener('scroll', () => {
+  function handleScroll() {
     if (window.scrollY > 20) {
-      navbar?.classList.add('bg-white/80', 'backdrop-blur-md', 'border-slate-100', 'shadow-sm');
-      navbar?.classList.remove('border-transparent');
+      navbar?.classList.add('bg-white/70', 'backdrop-blur-xl', 'border-slate-100/50', 'shadow-lg', 'shadow-slate-200/20', 'h-16');
+      navbar?.classList.remove('border-transparent', 'h-20');
+      navbar?.querySelector('.max-w-7xl')?.classList.remove('h-20');
+      navbar?.querySelector('.max-w-7xl')?.classList.add('h-16');
     } else {
-      navbar?.classList.remove('bg-white/80', 'backdrop-blur-md', 'border-slate-100', 'shadow-sm');
-      navbar?.classList.add('border-transparent');
+      navbar?.classList.remove('bg-white/70', 'backdrop-blur-xl', 'border-slate-100/50', 'shadow-lg', 'shadow-slate-200/20', 'h-16');
+      navbar?.classList.add('border-transparent', 'h-20');
+      navbar?.querySelector('.max-w-7xl')?.classList.add('h-20');
+      navbar?.querySelector('.max-w-7xl')?.classList.remove('h-16');
     }
-  });
+
+    // Active Section Highlighting
+    const sections = ['top', 'services', 'how-it-works', 'why-choose-us', 'testimonials', 'faq', 'contact'];
+    const currentPath = window.location.pathname;
+
+    if (currentPath === '/about') {
+       highlightLink('/about');
+    } else {
+      let currentSection = '';
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 100) {
+            currentSection = section;
+          }
+        }
+      }
+
+      if (currentSection === 'top' || currentSection === '') {
+        highlightLink('/#top');
+      } else {
+        highlightLink(`/#${currentSection}`);
+      }
+    }
+  }
+
+  function highlightLink(href: string) {
+    navLinks.forEach(link => {
+      const linkHref = link.getAttribute('data-href');
+      const indicator = link.querySelector('.active-indicator');
+      if (linkHref === href) {
+        link.classList.add('text-indigo-600');
+        link.classList.remove('text-slate-600');
+        indicator?.classList.remove('scale-x-0');
+        indicator?.classList.add('scale-x-100');
+      } else {
+        link.classList.remove('text-indigo-600');
+        link.classList.add('text-slate-600');
+        indicator?.classList.add('scale-x-0');
+        indicator?.classList.remove('scale-x-100');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', handleScroll);
+  window.addEventListener('load', handleScroll);
 
   // Mobile menu toggle
-  mobileMenuButton?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
+  let isMenuOpen = false;
+  function toggleMenu() {
+    isMenuOpen = !isMenuOpen;
+    if (isMenuOpen) {
+      mobileMenu?.classList.remove('translate-x-full');
+      hamburgerTop?.classList.add('rotate-45', 'translate-y-2');
+      hamburgerMid?.classList.add('opacity-0');
+      hamburgerBottom?.classList.add('-rotate-45', '-translate-y-2');
+      document.body.style.overflow = 'hidden';
+    } else {
+      mobileMenu?.classList.add('translate-x-full');
+      hamburgerTop?.classList.remove('rotate-45', 'translate-y-2');
+      hamburgerMid?.classList.remove('opacity-0');
+      hamburgerBottom?.classList.remove('-rotate-45', '-translate-y-2');
+      document.body.style.overflow = '';
+    }
+  }
+
+  mobileMenuButton?.addEventListener('click', toggleMenu);
+
+  // Close mobile menu on link click
+  mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (isMenuOpen) toggleMenu();
+    });
+  });
+
+  // Handle anchor clicks for smooth scroll on same page
+  document.querySelectorAll('a[href^="/#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      const targetId = href.split('#')[1];
+      const targetElement = document.getElementById(targetId);
+      const currentPath = window.location.pathname;
+
+      if (currentPath === '/' && targetElement) {
+        e.preventDefault();
+        const navHeight = 64;
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+        history.pushState(null, '', `/#${targetId}`);
+      }
+    });
   });
 </script>
+
+<style>
+  .nav-link:hover .active-indicator {
+    transform: scaleX(1) !important;
+  }
+</style>

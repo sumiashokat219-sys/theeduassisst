@@ -1,24 +1,14 @@
 ---
-const trustPoints = [
-  { text: "Course strategy", icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" },
-  { text: "Curriculum design", icon: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" },
-  { text: "Kajabi & LMS setup", icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" },
-  { text: "AI e-learning support", icon: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0012 18.75V19a2 2 0 11-4 0v-.25c0-1.035-.32-2.04-.924-2.85l-.548-.547z" }
-];
 ---
-<div class="bg-white border-y border-slate-100 py-10">
+<div class="bg-white border-y border-slate-100 py-12">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
-      {trustPoints.map((point) => (
-        <div class="flex items-center gap-3 justify-center lg:justify-start">
-          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={point.icon} />
-            </svg>
-          </div>
-          <span class="text-slate-700 font-medium whitespace-nowrap">{point.text}</span>
-        </div>
-      ))}
+    <p class="text-center text-slate-400 text-sm font-semibold uppercase tracking-widest mb-8">Trusted by Experts at</p>
+    <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+      <div class="text-xl font-bold text-slate-400">Kajabi</div>
+      <div class="text-xl font-bold text-slate-400">Thinkific</div>
+      <div class="text-xl font-bold text-slate-400">Teachable</div>
+      <div class="text-xl font-bold text-slate-400">Podia</div>
+      <div class="text-xl font-bold text-slate-400">LearnDash</div>
     </div>
   </div>
 </div>
