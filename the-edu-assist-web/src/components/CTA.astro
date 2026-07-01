@@ -1,29 +1,40 @@
 ---
 ---
-<section class="py-24 px-6">
-  <div class="max-w-5xl mx-auto rounded-3xl bg-indigo-600 p-12 md:p-20 text-center relative overflow-hidden shadow-2xl shadow-indigo-200">
-    <!-- Decorative background -->
-    <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+<section id="contact" class="py-24 px-6 relative overflow-hidden">
+  <!-- Premium background decorations -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 pointer-events-none">
+     <div class="absolute top-0 right-0 w-96 h-96 bg-indigo-50 rounded-full blur-3xl opacity-50"></div>
+     <div class="absolute bottom-0 left-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl opacity-50"></div>
+  </div>
+
+  <div class="max-w-6xl mx-auto rounded-[3.5rem] bg-gradient-to-br from-indigo-600 to-blue-700 p-12 md:p-24 text-center text-white relative shadow-2xl shadow-indigo-200 group overflow-hidden">
+    <!-- Grid pattern overlay -->
+    <div class="absolute inset-0 opacity-10 pointer-events-none">
        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
          <defs>
-           <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+           <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="1"/>
            </pattern>
          </defs>
-         <rect width="100%" height="100%" fill="url(#grid)" />
+         <rect width="100%" height="100%" fill="url(#grid-pattern)" />
        </svg>
     </div>
 
     <div class="relative z-10">
-      <h2 class="text-3xl md:text-5xl font-bold text-white mb-8 leading-tight">
-        Ready to build a course your learners can actually complete?
+      <h2 class="text-4xl md:text-6xl font-black mb-8 leading-tight animate-fade-up">
+        Ready to build a course your <br class="hidden md:block" /> learners can actually complete?
       </h2>
-      <p class="text-indigo-100 text-xl mb-12 max-w-2xl mx-auto">
+      <p class="text-indigo-100 text-xl md:text-2xl mb-12 max-w-2xl mx-auto font-medium animate-fade-up animation-delay-200">
         Book a free 30-minute audit of your course idea or existing materials and get a professional roadmap for your launch.
       </p>
-      <a href="#" class="inline-block px-10 py-5 bg-white text-indigo-600 font-bold rounded-2xl hover:bg-indigo-50 transition-all shadow-xl text-lg">
-        Book a Free Course Audit
-      </a>
+      <div class="flex flex-col sm:flex-row gap-6 justify-center animate-fade-up animation-delay-300">
+        <a href="mailto:Info@theeduassist.com" class="px-10 py-5 bg-white text-indigo-600 font-black rounded-2xl hover:bg-indigo-50 transition-all shadow-xl hover:-translate-y-1 text-lg">
+          Book a Free Course Audit
+        </a>
+        <a href="mailto:Info@theeduassist.com" class="px-10 py-5 bg-indigo-500/30 text-white font-black rounded-2xl border border-white/20 hover:bg-indigo-500/50 transition-all backdrop-blur-sm hover:-translate-y-1 text-lg">
+          Email Us
+        </a>
+      </div>
     </div>
   </div>
 </section>

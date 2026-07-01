@@ -23,7 +23,9 @@ import Navbar from '../components/Navbar.astro';
 	</head>
 	<body class="bg-[#F9FAFB] text-slate-900 font-sans selection:bg-indigo-100 selection:text-indigo-700">
 		<Navbar />
-		<slot />
+		<div class="animate-page-fade">
+			<slot />
+		</div>
 	</body>
 </html>
 
@@ -36,5 +38,12 @@ import Navbar from '../components/Navbar.astro';
 	html {
 		font-family: 'Inter', system-ui, sans-serif;
 		scroll-behavior: smooth;
+	}
+	@keyframes page-fade {
+		from { opacity: 0; }
+		to { opacity: 1; }
+	}
+	.animate-page-fade {
+		animation: page-fade 0.6s ease-out forwards;
 	}
 </style>
