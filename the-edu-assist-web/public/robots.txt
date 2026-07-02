@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://theeduassist-92ca4.web.app/sitemap-index.xml
