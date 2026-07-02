@@ -1,23 +1,77 @@
 ---
 interface Props {
 	title: string;
+	description?: string;
+	image?: string;
+	canonicalURL?: string;
 }
 
-const { title } = Astro.props;
+const {
+	title,
+	description = "TheEduAssist helps experts, coaches, and consultants design, build, and launch high-impact online courses on Kajabi and other LMS platforms.",
+	image = "/favicon.svg", // Default image if none provided
+	canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://theeduassist-92ca4.web.app").href,
+} = Astro.props;
+
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
+
+const siteName = "TheEduAssist";
+const author = "TheEduAssist Team";
+const twitterHandle = "@theeduassist"; // Placeholder if unknown
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
+		<!-- Global Metadata -->
 		<meta charset="UTF-8" />
-		<meta name="description" content="TheEduAssist - Turn Your Knowledge Into a Launch-Ready Online Course" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 		<link rel="manifest" href="/site.webmanifest" />
 		<meta name="generator" content={Astro.generator} />
+
+		<!-- Canonical URL -->
+		<link rel="canonical" href={canonicalURL} />
+
+		<!-- Primary Meta Tags -->
 		<title>{title}</title>
+		<meta name="title" content={title} />
+		<meta name="description" content={description} />
+		<meta name="keywords" content="online course design, course creation agency, Kajabi setup, curriculum planning, e-learning consultant, LMS implementation, TheEduAssist" />
+		<meta name="author" content={author} />
+		<meta name="robots" content="index, follow" />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={new URL(image, Astro.site || "https://theeduassist-92ca4.web.app")} />
+		<meta property="og:site_name" content={siteName} />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={canonicalURL} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={new URL(image, Astro.site || "https://theeduassist-92ca4.web.app")} />
+		{twitterHandle && <meta property="twitter:site" content={twitterHandle} />}
+
+		<!-- Structured Data -->
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "Organization",
+			"name": siteName,
+			"url": "https://theeduassist-92ca4.web.app",
+			"logo": "https://theeduassist-92ca4.web.app/favicon.svg",
+			"description": description,
+			"sameAs": [
+				// Add social media links here if available
+			]
+		})} />
+
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
