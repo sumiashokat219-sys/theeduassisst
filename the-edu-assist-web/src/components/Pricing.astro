@@ -1,0 +1,240 @@
+---
+const plans = [
+  {
+    name: "Starter",
+    price: "$499",
+    description: "Perfect for experts just getting started with their first online course.",
+    features: [
+      "1 Course Curriculum Design",
+      "Technical Platform Setup",
+      "Basic Email Automation",
+      "1 Landing Page Design",
+      "30 Days Email Support",
+      "Standard AI Content Tools"
+    ],
+    buttonText: "Pay with ",
+    popular: false
+  },
+  {
+    name: "Professional",
+    price: "$1,299",
+    description: "The complete solution for scaling your e-learning business to the next level.",
+    features: [
+      "3 Course Curriculum Designs",
+      "Advanced Kajabi/LMS Setup",
+      "Full Funnel Automation",
+      "3 Pro Landing Pages",
+      "90 Days Priority Support",
+      "Premium AI Content Support"
+    ],
+    buttonText: "Pay with ",
+    popular: true
+  },
+  {
+    name: "Enterprise",
+    price: "Custom",
+    description: "Bespoke solutions for established institutions and high-volume creators.",
+    features: [
+      "Unlimited Course Designs",
+      "Custom Platform Development",
+      "Dedicated Account Manager",
+      "Unlimited Funnels & Pages",
+      "Lifetime Priority Support",
+      "Custom AI Integrations"
+    ],
+    buttonText: "Pay with ",
+    popular: false
+  }
+];
+
+const comparison = [
+  { feature: "Curriculum Design", starter: "1 Course", pro: "3 Courses", enterprise: "Unlimited" },
+  { feature: "Technical Setup", starter: "Basic", pro: "Advanced", enterprise: "Custom" },
+  { feature: "Landing Pages", starter: "1 Page", pro: "3 Pages", enterprise: "Unlimited" },
+  { feature: "Support", starter: "30 Days", pro: "90 Days Priority", enterprise: "Dedicated Manager" },
+  { feature: "AI Support", starter: "Standard", pro: "Premium", enterprise: "Custom" },
+  { feature: "Automation", starter: "Basic", pro: "Full Funnel", enterprise: "Advanced Custom" },
+];
+---
+
+<section id="pricing" class="py-24 bg-white dark:bg-slate-950 transition-colors duration-300 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 reveal-up">
+      <h2 class="text-3xl md:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-violet-500 to-indigo-600 animate-gradient-text">
+        Simple, Transparent Pricing
+      </h2>
+      <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-lg">
+        Choose the plan that's right for your goals. No hidden fees, just pure value.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
+      {plans.map((plan, i) => (
+        <div
+          class={`relative p-8 rounded-3xl transition-all duration-500 reveal-up hover-lift flex flex-col ${
+            plan.popular
+              ? 'bg-gradient-to-b from-indigo-50 to-white dark:from-indigo-950/30 dark:to-slate-900 ring-2 ring-indigo-500 shadow-xl shadow-indigo-200/50 dark:shadow-indigo-500/10'
+              : 'glass-card border border-slate-100 dark:border-slate-800'
+          }`}
+          style={`transition-delay: ${i * 100}ms`}
+        >
+          {plan.popular && (
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-indigo-600 text-white text-sm font-bold rounded-full shadow-lg">
+              Most Popular
+            </div>
+          )}
+
+          <div class="mb-8">
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">{plan.name}</h3>
+            <div class="flex items-baseline gap-1 mb-4">
+              <span class="text-4xl font-extrabold text-slate-900 dark:text-white">{plan.price}</span>
+              {plan.price !== 'Custom' && <span class="text-slate-500 dark:text-slate-400">/one-time</span>}
+            </div>
+            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+              {plan.description}
+            </p>
+          </div>
+
+          <ul class="space-y-4 mb-8 flex-grow">
+            {plan.features.map(feature => (
+              <li class="flex items-start gap-3 text-slate-600 dark:text-slate-300 text-sm">
+                <div class="mt-0.5 w-5 h-5 rounded-full bg-indigo-50 dark:bg-indigo-900/50 flex items-center justify-center flex-shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-indigo-600 dark:text-indigo-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                {feature}
+              </li>
+            ))}
+          </ul>
+
+          <button
+            class="gpay-btn w-full py-4 px-6 rounded-2xl bg-black text-white dark:bg-white dark:text-black font-bold flex items-center justify-center gap-2.5 hover:opacity-90 transition-all active:scale-[0.98] group/btn"
+            aria-label={`Pay with Google Pay for ${plan.name} plan`}
+          >
+            <span class="text-sm uppercase tracking-wide opacity-90">Pay with</span>
+            <div class="flex items-center gap-1.5">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22.56 12.25c0-.85-.07-1.71-.22-2.55H12v4.84h5.92c-.26 1.37-1.04 2.53-2.21 3.31v3.1h3.58c2.08-1.92 3.27-4.74 3.27-7.7z" fill="#4285F4"/>
+                <path d="M12 23c3.15 0 5.8-1.05 7.73-2.85l-3.58-3.1c-1.05.7-2.4 1.1-4.15 1.1-3.2 0-5.9-2.16-6.87-5.06H1.54v3.2C3.55 20.18 7.59 23 12 23z" fill="#34A853"/>
+                <path d="M5.13 13.09c-.25-.74-.4-1.53-.4-2.34s.15-1.6.4-2.34V5.21H1.54C.56 7.16 0 9.51 0 12s.56 4.84 1.54 6.79l3.59-3.7z" fill="#FBBC04"/>
+                <path d="M12 5.38c1.72 0 3.25.59 4.47 1.76l3.35-3.35C17.79 1.72 15.14.5 12 .5 7.59.5 3.55 3.32 1.54 7.21l3.59 2.14c.97-2.9 3.67-5.06 12-5.06z" fill="#EA4335"/>
+              </svg>
+              <span class="text-xl font-semibold tracking-tight">Pay</span>
+            </div>
+          </button>
+        </div>
+      ))}
+    </div>
+
+    <!-- Comparison Table -->
+    <div class="reveal-up">
+      <div class="text-center mb-12">
+        <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Plan Comparison</h3>
+        <p class="text-slate-500 dark:text-slate-400 mt-2">A detailed look at what's included</p>
+      </div>
+
+      <div class="overflow-x-auto pb-4">
+        <table class="w-full text-left border-collapse min-w-[600px]">
+          <thead>
+            <tr class="border-b border-slate-100 dark:border-slate-800">
+              <th class="py-6 px-4 text-slate-900 dark:text-white font-bold">Feature</th>
+              <th class="py-6 px-4 text-slate-900 dark:text-white font-bold">Starter</th>
+              <th class="py-6 px-4 text-indigo-600 dark:text-indigo-400 font-bold">Professional</th>
+              <th class="py-6 px-4 text-slate-900 dark:text-white font-bold">Enterprise</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-50 dark:divide-slate-900">
+            {comparison.map((row) => (
+              <tr>
+                <td class="py-5 px-4 text-slate-700 dark:text-slate-300 font-medium">{row.feature}</td>
+                <td class="py-5 px-4 text-slate-500 dark:text-slate-400 text-sm">{row.starter}</td>
+                <td class="py-5 px-4 text-slate-900 dark:text-slate-200 text-sm font-semibold">{row.pro}</td>
+                <td class="py-5 px-4 text-slate-500 dark:text-slate-400 text-sm">{row.enterprise}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Demo Modal -->
+  <div id="gpay-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-6 opacity-0 pointer-events-none transition-all duration-300">
+    <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" id="modal-overlay"></div>
+    <div class="relative bg-white dark:bg-slate-900 rounded-3xl p-8 max-w-md w-full shadow-2xl transform scale-95 transition-all duration-300" id="modal-content">
+      <div class="w-16 h-16 bg-indigo-100 dark:bg-indigo-900/50 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+      <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-2 text-center">Google Pay Integration Coming Soon</h4>
+      <p class="text-slate-600 dark:text-slate-400 text-center mb-8">
+        This is a frontend demonstration of the pricing layout. Real payment processing is currently in development.
+      </p>
+      <button id="close-modal" class="w-full py-4 bg-slate-900 dark:bg-white text-white dark:text-black font-bold rounded-2xl hover:opacity-90 transition-all">
+        Got it, thanks!
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  const gpayButtons = document.querySelectorAll('.gpay-btn');
+  const modal = document.getElementById('gpay-modal');
+  const modalContent = document.getElementById('modal-content');
+  const modalOverlay = document.getElementById('modal-overlay');
+  const closeModal = document.getElementById('close-modal');
+
+  function openModal() {
+    modal?.classList.remove('opacity-0', 'pointer-events-none');
+    modalContent?.classList.remove('scale-95');
+    modalContent?.classList.add('scale-100');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function hideModal() {
+    modal?.classList.add('opacity-0', 'pointer-events-none');
+    modalContent?.classList.remove('scale-100');
+    modalContent?.classList.add('scale-95');
+    document.body.style.overflow = '';
+  }
+
+  gpayButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal();
+    });
+  });
+
+  closeModal?.addEventListener('click', hideModal);
+  modalOverlay?.addEventListener('click', hideModal);
+
+  // Close on Escape key
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') hideModal();
+  });
+</script>
+
+<style>
+  @reference "tailwindcss";
+
+  .gpay-btn:hover {
+    box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.5);
+  }
+
+  .dark .gpay-btn:hover {
+    box-shadow: 0 10px 20px -10px rgba(255, 255, 255, 0.2);
+  }
+
+  /* Custom table scrollbar */
+  .overflow-x-auto::-webkit-scrollbar {
+    height: 6px;
+  }
+  .overflow-x-auto::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .overflow-x-auto::-webkit-scrollbar-thumb {
+    @apply bg-slate-200 dark:bg-slate-800 rounded-full;
+  }
+</style>

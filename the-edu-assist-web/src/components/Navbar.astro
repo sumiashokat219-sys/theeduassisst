@@ -6,6 +6,7 @@ const navLinks = [
   { name: 'How It Works', href: '/#how-it-works' },
   { name: 'Why Choose Us', href: '/#why-choose-us' },
   { name: 'Testimonials', href: '/#testimonials' },
+  { name: 'Pricing', href: '/#pricing' },
   { name: 'FAQ', href: '/#faq' },
   { name: 'Contact', href: '/#contact' },
 ];
@@ -104,7 +105,7 @@ import ThemeToggle from './ThemeToggle.astro';
     }
 
     // Active Section Highlighting
-    const sections = ['top', 'services', 'how-it-works', 'why-choose-us', 'testimonials', 'faq', 'contact'];
+    const sections = ['top', 'services', 'how-it-works', 'why-choose-us', 'testimonials', 'pricing', 'faq', 'contact'];
     const currentPath = window.location.pathname;
 
     if (currentPath === '/about') {
