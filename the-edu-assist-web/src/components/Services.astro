@@ -32,11 +32,11 @@ const services = [
   }
 ];
 ---
-<section id="services" class="py-24 bg-[#F9FAFB]">
+<section id="services" class="py-24 bg-white dark:bg-slate-950 transition-colors duration-300">
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-16 reveal-up">
-      <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Our Services</h2>
-      <p class="text-slate-600 max-w-2xl mx-auto text-lg">
+      <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">Our Services</h2>
+      <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-lg">
         Tailored solutions to help you design, build, and launch a professional e-learning business.
       </p>
     </div>
@@ -44,13 +44,13 @@ const services = [
     <div class="grid md:grid-cols-3 gap-8">
       {services.map((service, i) => (
         <div class="glass-card p-10 rounded-3xl shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group reveal-up" style={`transition-delay: ${i * 100}ms`}>
-          <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
+          <div class="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={service.icon} />
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-slate-900 mb-4">{service.title}</h3>
-          <p class="text-slate-600 leading-relaxed">
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">{service.title}</h3>
+          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
             {service.description}
           </p>
         </div>

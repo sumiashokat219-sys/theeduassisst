@@ -1,9 +1,9 @@
 ---
 ---
-<section id="testimonials" class="py-24 md:py-32 bg-white">
+<section id="testimonials" class="py-24 md:py-32 bg-white dark:bg-slate-950 transition-colors duration-300">
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-20 reveal-up">
-      <h2 class="inline-flex items-center text-indigo-600 font-bold tracking-widest uppercase text-sm mb-4">
+      <h2 class="inline-flex items-center text-indigo-600 dark:text-indigo-400 font-bold tracking-widest uppercase text-sm mb-4">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
         </svg>
@@ -17,23 +17,23 @@
 
     <div class="grid md:grid-cols-2 gap-8">
        {[1, 2].map(i => (
-         <div class="p-10 md:p-12 rounded-[3rem] bg-gradient-to-br from-indigo-50/50 to-white border border-indigo-50 relative reveal-up">
-            <div class="absolute top-10 right-12 text-indigo-100">
+         <div class="p-10 md:p-12 rounded-[3rem] bg-gradient-to-br from-indigo-50/50 to-white dark:from-slate-900 dark:to-slate-900/50 border border-indigo-50 dark:border-slate-800 relative reveal-up transition-colors duration-300">
+            <div class="absolute top-10 right-12 text-indigo-100 dark:text-indigo-900/30">
                <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11H17.017V15H15.017C13.3601 15 12.017 16.3431 12.017 18V21H14.017ZM5.01701 21L5.01701 18C5.01701 16.8954 5.91245 16 7.01701 16H10.017C10.5693 16 11.017 15.5523 11.017 15V9C11.017 8.44772 10.5693 8 10.017 8H6.01701C5.46473 8 5.01701 8.44772 5.01701 9V11H8.01701V15H6.01701C4.36016 15 3.01701 16.3431 3.01701 18V21H5.01701Z"></path></svg>
             </div>
             <div class="flex gap-1 mb-6 text-yellow-400">
                {[1,2,3,4,5].map(_ => <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>)}
             </div>
-            <p class="text-xl md:text-2xl text-slate-700 leading-relaxed italic mb-8">
+            <p class="text-xl md:text-2xl text-slate-700 dark:text-slate-300 leading-relaxed italic mb-8">
               "{i === 1 ? "TheEduAssist transformed my scattered notes into a professional academy. My students love the structure and I've seen a 40% increase in completion rates." : "I was overwhelmed by the tech, but they handled everything. Now I focus purely on teaching while my course runs on autopilot."}"
             </p>
             <div class="flex items-center gap-4">
-               <div class="w-14 h-14 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-xl">
+               <div class="w-14 h-14 rounded-full bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-bold text-xl">
                   {i === 1 ? "SM" : "JD"}
                </div>
                <div>
-                  <div class="font-bold text-slate-900">{i === 1 ? "Sarah Mitchell" : "John Davis"}</div>
-                  <div class="text-slate-500 text-sm">{i === 1 ? "Marketing Consultant" : "Business Coach"}</div>
+                  <div class="font-bold text-slate-900 dark:text-white">{i === 1 ? "Sarah Mitchell" : "John Davis"}</div>
+                  <div class="text-slate-500 dark:text-slate-400 text-sm">{i === 1 ? "Marketing Consultant" : "Business Coach"}</div>
                </div>
             </div>
          </div>

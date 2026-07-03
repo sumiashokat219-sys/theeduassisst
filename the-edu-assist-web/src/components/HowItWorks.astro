@@ -22,36 +22,36 @@ const steps = [
   }
 ];
 ---
-<section id="how-it-works" class="py-24 bg-slate-900 text-white overflow-hidden">
+<section id="how-it-works" class="py-24 bg-white dark:bg-slate-950 text-slate-900 dark:text-white overflow-hidden transition-colors duration-300">
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-20 reveal-up">
       <h2 class="text-3xl md:text-5xl font-bold mb-6">How It Works</h2>
-      <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+      <p class="text-slate-600 dark:text-slate-400 text-lg max-w-2xl mx-auto">
         A streamlined process designed to take you from idea to launch in record time.
       </p>
     </div>
 
     <div class="relative">
       <!-- Vertical line -->
-      <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-slate-800 -translate-x-1/2"></div>
+      <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-slate-100 dark:bg-slate-800 -translate-x-1/2"></div>
 
       <div class="space-y-12 md:space-y-24">
         {steps.map((step, index) => (
           <div class={`relative flex flex-col md:flex-row items-center reveal-up ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
             <!-- Mobile/Left line marker -->
-            <div class="absolute left-4 md:left-1/2 top-8 md:top-1/2 w-8 h-8 rounded-full bg-indigo-600 border-4 border-slate-900 -translate-x-1/2 -translate-y-1/2 z-10 flex items-center justify-center text-xs font-bold shadow-lg shadow-indigo-500/20">
+            <div class="absolute left-4 md:left-1/2 top-8 md:top-1/2 w-8 h-8 rounded-full bg-indigo-600 border-4 border-white dark:border-slate-950 -translate-x-1/2 -translate-y-1/2 z-10 flex items-center justify-center text-xs font-bold text-white shadow-lg shadow-indigo-500/20">
               {index + 1}
             </div>
 
             <!-- Content Container -->
             <div class={`w-full md:w-1/2 pl-12 md:pl-0 ${index % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16 md:text-left'}`}>
-              <div class={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-500 mb-6 ${index % 2 === 0 ? 'md:ml-auto' : ''}`}>
+              <div class={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 mb-6 ${index % 2 === 0 ? 'md:ml-auto' : ''}`}>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={step.icon} />
                 </svg>
               </div>
               <h3 class="text-2xl font-bold mb-4">{step.title}</h3>
-              <p class="text-slate-400 text-lg leading-relaxed">
+              <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
                 {step.description}
               </p>
             </div>

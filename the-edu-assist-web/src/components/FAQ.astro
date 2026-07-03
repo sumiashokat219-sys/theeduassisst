@@ -6,16 +6,16 @@ const faqs = [
   { q: "Will I own all the content?", a: "Yes, you retain 100% ownership of all your intellectual property and course materials." }
 ];
 ---
-<section id="faq" class="py-24 md:py-32 bg-slate-50/50">
+<section id="faq" class="py-24 md:py-32 bg-slate-50/50 dark:bg-slate-900/50 transition-colors duration-300">
    <div class="max-w-4xl mx-auto px-6">
       <div class="text-center mb-16 reveal-up">
-        <h2 class="inline-flex items-center text-indigo-600 font-bold tracking-widest uppercase text-sm mb-4">
+        <h2 class="inline-flex items-center text-indigo-600 dark:text-indigo-400 font-bold tracking-widest uppercase text-sm mb-4">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           FAQ
         </h2>
-        <h3 class="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-6 flex flex-col items-center">
+        <h3 class="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6 flex flex-col items-center">
           <span class="bg-gradient-to-r from-indigo-600 via-violet-500 to-indigo-600 bg-clip-text text-transparent animate-gradient-text">Common Questions</span>
           <div class="mt-4 w-20 h-1.5 rounded-full bg-gradient-to-r from-indigo-600 to-violet-500"></div>
         </h3>
@@ -23,14 +23,14 @@ const faqs = [
 
       <div class="space-y-4">
          {faqs.map((faq, i) => (
-           <details class="group bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 reveal-up" style={`transition-delay: ${i * 100}ms`}>
-              <summary class="flex items-center justify-between p-6 cursor-pointer list-none hover:bg-slate-50/50 transition-colors">
-                 <span class="text-lg font-bold text-slate-900">{faq.q}</span>
-                 <span class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-open:rotate-180 transition-transform duration-500">
-                    <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+           <details class="group bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 reveal-up" style={`transition-delay: ${i * 100}ms`}>
+              <summary class="flex items-center justify-between p-6 cursor-pointer list-none hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors">
+                 <span class="text-lg font-bold text-slate-900 dark:text-white">{faq.q}</span>
+                 <span class="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 flex items-center justify-center group-open:rotate-180 transition-transform duration-500">
+                    <svg class="w-5 h-5 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                  </span>
               </summary>
-              <div class="px-6 pb-6 text-slate-600 leading-relaxed animate-fade-in">
+              <div class="px-6 pb-6 text-slate-600 dark:text-slate-400 leading-relaxed animate-fade-in">
                  {faq.a}
               </div>
            </details>
