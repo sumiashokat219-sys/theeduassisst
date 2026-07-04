@@ -16,14 +16,13 @@ const dropdownLinks = [
 
 const allLinks = [...mainLinks, ...dropdownLinks];
 import ThemeToggle from './ThemeToggle.astro';
+import Logo from './Logo.astro';
 ---
 
 <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b border-transparent dark:border-slate-800/50 [&.is-scrolled]:bg-white/70 dark:[&.is-scrolled]:bg-slate-900/70 [&.is-scrolled]:backdrop-blur-xl [&.is-scrolled]:border-slate-100/50 dark:[&.is-scrolled]:border-slate-800/50 [&.is-scrolled]:shadow-lg [&.is-scrolled]:shadow-slate-200/20 dark:[&.is-scrolled]:shadow-slate-950/20" id="navbar">
   <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
     <a href="/" class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2 group">
-      <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-lg group-hover:scale-110 transition-transform duration-300">
-        E
-      </div>
+      <Logo size={40} class="group-hover:scale-110 transition-transform duration-300" />
       <span class="tracking-tight">TheEduAssist</span>
     </a>
 
