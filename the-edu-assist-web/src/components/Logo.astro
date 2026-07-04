@@ -1,0 +1,86 @@
+---
+interface Props {
+  class?: string;
+  size?: number;
+}
+
+const { class: className, size = 40 } = Astro.props;
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 100 100"
+  class={className}
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+>
+  <defs>
+    <!-- Top text path (Center of green ring: radius 43.5) -->
+    <path id="topPath" d="M 6.5,50 A 43.5,43.5 0 0,1 93.5,50" />
+    <!-- Bottom text path (Center of green ring: radius 43.5, CCW to keep text upright) -->
+    <path id="bottomPath" d="M 6.5,50 A 43.5,43.5 0 0,0 93.5,50" />
+  </defs>
+
+  <!-- Outer Ring (Green) -->
+  <circle cx="50" cy="50" r="48" fill="#7CB342" />
+
+  <!-- White Separator -->
+  <circle cx="50" cy="50" r="39" fill="white" />
+
+  <!-- Inner Circle (Navy) -->
+  <circle cx="50" cy="50" r="37" fill="#23476B" />
+
+  <!-- Circular Text -->
+  <text
+    fill="white"
+    font-family="'Inter', system-ui, sans-serif"
+    font-weight="900"
+    font-size="8.5"
+    letter-spacing="0.8"
+  >
+    <textPath xlink:href="#topPath" startOffset="50%" text-anchor="middle" dominant-baseline="central">
+      THEEDUASSIST
+    </textPath>
+  </text>
+
+  <text
+    fill="white"
+    font-family="'Inter', system-ui, sans-serif"
+    font-weight="800"
+    font-size="4.2"
+    letter-spacing="0.4"
+  >
+    <textPath xlink:href="#bottomPath" startOffset="50%" text-anchor="middle" dominant-baseline="central">
+      E-LEARNING DESIGN AGENCY
+    </textPath>
+  </text>
+
+  <!-- Stars -->
+  <text x="6" y="52" fill="white" font-size="8" text-anchor="middle" font-weight="bold">★</text>
+  <text x="94" y="52" fill="white" font-size="8" text-anchor="middle" font-weight="bold">★</text>
+
+  <!-- Center Icon Group -->
+  <!-- 1. Circuit lines (Background) -->
+  <g stroke="white" stroke-width="0.7" opacity="0.8">
+    <line x1="50" y1="35" x2="50" y2="28" />
+    <line x1="42" y1="42" x2="36" y1="34" />
+    <line x1="58" y1="42" x2="64" y1="34" />
+    <circle cx="50" cy="28" r="1.2" fill="white" stroke="none" />
+    <circle cx="36" cy="34" r="1.2" fill="white" stroke="none" />
+    <circle cx="64" cy="34" r="1.2" fill="white" stroke="none" />
+  </g>
+
+  <!-- 2. Graduation Cap (Middle) -->
+  <g fill="white">
+    <path d="M 34,44 L 50,36 L 66,44 L 50,52 Z" />
+    <path d="M 41,47 L 41,52 Q 50,55 59,52 L 59,47" />
+    <line x1="66" y1="44" x2="66" y2="52" stroke="white" stroke-width="1.2" />
+  </g>
+
+  <!-- 3. Open Book (Foreground) -->
+  <g fill="white">
+    <path d="M 30,59 Q 50,54 70,59 L 70,76 Q 50,71 30,76 Z" />
+    <line x1="50" y1="59" x2="50" y2="76" stroke="#23476B" stroke-width="0.6" />
+  </g>
+</svg>
