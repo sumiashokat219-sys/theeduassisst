@@ -1,0 +1,246 @@
+---
+const resources = [
+  {
+    title: "Course Planning Checklist (PDF)",
+    description: "A comprehensive step-by-step checklist to ensure you don't miss a thing while planning your course.",
+    icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+  },
+  {
+    title: "Course Outline Template",
+    description: "Structure your course effectively with our proven curriculum outline template.",
+    icon: "M4 6h16M4 10h16M4 14h16M4 18h16"
+  },
+  {
+    title: "LMS Setup Guide",
+    description: "Navigate the technical landscape with ease using our guide to setting up your Learning Management System.",
+    icon: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+  },
+  {
+    title: "Course Launch Checklist",
+    description: "Everything you need to check before you hit 'Launch' on your new educational product.",
+    icon: "M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+  },
+  {
+    title: "AI Prompt Pack for Course Creators",
+    description: "Supercharge your content creation with our curated list of AI prompts for educators.",
+    icon: "M13 10V3L4 14h7v7l9-11h-7z"
+  },
+  {
+    title: "Student Engagement Guide",
+    description: "Learn how to keep your students motivated and improve course completion rates.",
+    icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+  }
+];
+---
+
+<section id="resources" class="py-24 bg-slate-50 dark:bg-slate-900/50 transition-colors duration-300">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 reveal-up">
+      <h2 class="text-3xl md:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-violet-500 to-indigo-600 animate-gradient-text">
+        Free Resources
+      </h2>
+      <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-lg">
+        Boost your course creation journey with our curated collection of professional tools and guides.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {resources.map((resource, i) => (
+        <div
+          class="glass-card p-8 rounded-3xl shadow-sm hover-lift transition-all duration-500 group reveal-up"
+          style={`transition-delay: ${i * 50}ms`}
+        >
+          <div class="w-14 h-14 rounded-2xl bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={resource.icon} />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">{resource.title}</h3>
+          <p class="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+            {resource.description}
+          </p>
+          <button
+            class="request-resource-btn w-full py-3.5 px-6 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+            data-resource={resource.title}
+          >
+            Request Resource
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </button>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Resource Modal -->
+  <div id="resource-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-6 opacity-0 pointer-events-none transition-all duration-300">
+    <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" id="resource-modal-overlay"></div>
+    <div class="relative bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 md:p-10 max-w-xl w-full shadow-2xl transform scale-95 transition-all duration-300 border border-slate-100 dark:border-slate-800" id="resource-modal-content">
+
+      <button id="close-resource-modal" class="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-600 dark:hover:text-white transition-colors" aria-label="Close modal">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <div id="modal-form-container">
+        <div class="mb-8">
+          <h4 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-2" id="modal-title">Request Resource</h4>
+          <p class="text-slate-600 dark:text-slate-400">Fill in your details and we'll send the resource to your inbox.</p>
+        </div>
+
+        <form id="resource-form" class="space-y-5">
+          <input type="hidden" id="resource-name-hidden" name="resource_name" />
+
+          <div class="space-y-2">
+            <label for="full-name" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Full Name *</label>
+            <input
+              type="text"
+              id="full-name"
+              name="full_name"
+              required
+              placeholder="John Doe"
+              class="w-full px-5 py-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:border-indigo-500 dark:focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500"
+            />
+          </div>
+
+          <div class="space-y-2">
+            <label for="email" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Email Address *</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="john@example.com"
+              class="w-full px-5 py-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:border-indigo-500 dark:focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500"
+            />
+          </div>
+
+          <div class="space-y-2">
+            <label for="company" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Company/Organization (Optional)</label>
+            <input
+              type="text"
+              id="company"
+              name="company"
+              placeholder="Your Academy"
+              class="w-full px-5 py-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:border-indigo-500 dark:focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500"
+            />
+          </div>
+
+          <div class="space-y-2">
+            <label for="message" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Message (Optional)</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="3"
+              placeholder="Tell us a bit about your project..."
+              class="w-full px-5 py-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:border-indigo-500 dark:focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 resize-none"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full py-4 px-6 mt-4 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-lg shadow-lg shadow-indigo-200 dark:shadow-none transition-all active:scale-[0.98]"
+          >
+            Get My Resource
+          </button>
+        </form>
+      </div>
+
+      <div id="modal-success-container" class="hidden py-8 text-center">
+        <div class="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-6 mx-auto">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h4 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Thank you for your request!</h4>
+        <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
+          We've received your details. Our team will review your request and send the requested resource to your email shortly.
+        </p>
+        <button id="close-success" class="mt-10 w-full py-4 bg-slate-900 dark:bg-white text-white dark:text-black font-bold rounded-2xl hover:opacity-90 transition-all">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const modal = document.getElementById('resource-modal');
+  const modalContent = document.getElementById('resource-modal-content');
+  const modalOverlay = document.getElementById('resource-modal-overlay');
+  const closeModalBtn = document.getElementById('close-resource-modal');
+  const resourceBtns = document.querySelectorAll('.request-resource-btn');
+  const resourceForm = document.getElementById('resource-form') as HTMLFormElement;
+  const formContainer = document.getElementById('modal-form-container');
+  const successContainer = document.getElementById('modal-success-container');
+  const closeSuccessBtn = document.getElementById('close-success');
+  const modalTitle = document.getElementById('modal-title');
+  const hiddenResourceInput = document.getElementById('resource-name-hidden') as HTMLInputElement;
+
+  function openModal(resourceTitle: string) {
+    if (modalTitle) modalTitle.textContent = `Request: ${resourceTitle}`;
+    if (hiddenResourceInput) hiddenResourceInput.value = resourceTitle;
+
+    // Reset state
+    formContainer?.classList.remove('hidden');
+    successContainer?.classList.add('hidden');
+    resourceForm?.reset();
+
+    modal?.classList.remove('opacity-0', 'pointer-events-none');
+    modalContent?.classList.remove('scale-95');
+    modalContent?.classList.add('scale-100');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function hideModal() {
+    modal?.classList.add('opacity-0', 'pointer-events-none');
+    modalContent?.classList.remove('scale-100');
+    modalContent?.classList.add('scale-95');
+    document.body.style.overflow = '';
+  }
+
+  resourceBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const title = btn.getAttribute('data-resource') || 'Resource';
+      openModal(title);
+    });
+  });
+
+  closeModalBtn?.addEventListener('click', hideModal);
+  closeSuccessBtn?.addEventListener('click', hideModal);
+  modalOverlay?.addEventListener('click', hideModal);
+
+  resourceForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Simple frontend validation check (HTML5 required already handles basic stuff)
+    const formData = new FormData(resourceForm);
+    const fullName = formData.get('full_name') as string;
+    const email = formData.get('email') as string;
+
+    if (fullName.trim() && email.trim()) {
+      // Show success message
+      formContainer?.classList.add('hidden');
+      successContainer?.classList.remove('hidden');
+    }
+  });
+
+  // Close on Escape key
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') hideModal();
+  });
+</script>
+
+<style>
+  @reference "tailwindcss";
+
+  .request-resource-btn {
+    box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.2);
+  }
+
+  .dark .request-resource-btn {
+    box-shadow: none;
+  }
+</style>
