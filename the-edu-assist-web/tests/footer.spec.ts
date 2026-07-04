@@ -43,7 +43,7 @@ test.describe('Footer Redesign', () => {
     const footer = page.locator('footer');
 
     // Toggle dark mode using the ThemeToggle component
-    const themeToggle = page.locator('#theme-toggle');
+    const themeToggle = page.locator('.theme-toggle').first();
     if (await themeToggle.isVisible()) {
       await themeToggle.click();
       // Check if .dark class is added to html

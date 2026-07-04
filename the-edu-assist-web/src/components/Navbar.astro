@@ -1,15 +1,20 @@
 ---
-const navLinks = [
+const mainLinks = [
   { name: 'Home', href: '/#top' },
-  { name: 'About', href: '/about' },
   { name: 'Services', href: '/#services' },
+  { name: 'Pricing', href: '/#pricing' },
+  { name: 'About', href: '/about' },
+];
+
+const dropdownLinks = [
   { name: 'How It Works', href: '/#how-it-works' },
   { name: 'Why Choose Us', href: '/#why-choose-us' },
   { name: 'Testimonials', href: '/#testimonials' },
-  { name: 'Pricing', href: '/#pricing' },
   { name: 'FAQ', href: '/#faq' },
   { name: 'Contact', href: '/#contact' },
 ];
+
+const allLinks = [...mainLinks, ...dropdownLinks];
 import ThemeToggle from './ThemeToggle.astro';
 ---
 
@@ -24,7 +29,7 @@ import ThemeToggle from './ThemeToggle.astro';
 
     <!-- Desktop Menu -->
     <div class="hidden lg:flex items-center gap-1">
-      {navLinks.map(link => (
+      {mainLinks.map(link => (
         <a
           href={link.href}
           class="nav-link px-4 py-2 text-sm text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium transition-all relative group"
@@ -34,6 +39,39 @@ import ThemeToggle from './ThemeToggle.astro';
           <span class="absolute bottom-1 left-4 right-4 h-0.5 bg-indigo-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left active-indicator"></span>
         </a>
       ))}
+
+      <!-- More Dropdown -->
+      <div class="relative group dropdown-container">
+        <button
+          class="px-4 py-2 text-sm text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium transition-all flex items-center gap-1 group/btn"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          More
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform duration-300 group-hover/btn:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+
+        <div class="absolute top-full right-0 mt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0 transition-all duration-300 z-[60] focus-within:opacity-100 focus-within:visible focus-within:translate-y-0" role="menu">
+          <div class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-slate-200/50 dark:border-slate-800/50 rounded-2xl shadow-2xl shadow-slate-200/50 dark:shadow-slate-950/50 overflow-hidden p-2">
+            {dropdownLinks.map(link => (
+              <a
+                href={link.href}
+                role="menuitem"
+                class="nav-link flex items-center px-4 py-3 text-sm text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-xl transition-all font-medium group/item"
+                data-href={link.href}
+              >
+                {link.name}
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-auto opacity-0 -translate-x-2 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="hidden lg:flex items-center gap-4">
@@ -60,7 +98,7 @@ import ThemeToggle from './ThemeToggle.astro';
   <div class="lg:hidden fixed inset-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl z-40 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] translate-x-full" id="mobile-menu">
     <div class="flex flex-col h-full pt-24 pb-12 px-8 overflow-y-auto">
       <div class="flex flex-col gap-4">
-        {navLinks.map(link => (
+        {allLinks.map(link => (
           <a href={link.href} class="mobile-nav-link text-2xl font-bold text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors border-b border-slate-100 dark:border-slate-800 pb-4">
             {link.name}
           </a>
@@ -134,16 +172,35 @@ import ThemeToggle from './ThemeToggle.astro';
     navLinks.forEach(link => {
       const linkHref = link.getAttribute('data-href');
       const indicator = link.querySelector('.active-indicator');
+      const isDropdownItem = link.closest('.dropdown-container') !== null;
+
       if (linkHref === href) {
-        link.classList.add('text-indigo-600');
-        link.classList.remove('text-slate-600');
+        link.classList.add('text-indigo-600', 'dark:text-indigo-400');
+        link.classList.remove('text-slate-600', 'dark:text-slate-400');
         indicator?.classList.remove('scale-x-0');
         indicator?.classList.add('scale-x-100');
+
+        if (isDropdownItem) {
+          const dropdownButton = link.closest('.dropdown-container')?.querySelector('button');
+          dropdownButton?.classList.add('text-indigo-600', 'dark:text-indigo-400');
+          dropdownButton?.classList.remove('text-slate-600', 'dark:text-slate-400');
+        }
       } else {
-        link.classList.remove('text-indigo-600');
-        link.classList.add('text-slate-600');
+        link.classList.remove('text-indigo-600', 'dark:text-indigo-400');
+        link.classList.add('text-slate-600', 'dark:text-slate-400');
         indicator?.classList.add('scale-x-0');
         indicator?.classList.remove('scale-x-100');
+
+        if (isDropdownItem) {
+          const dropdownContainer = link.closest('.dropdown-container');
+          const dropdownButton = dropdownContainer?.querySelector('button');
+          const hasActiveChild = dropdownContainer?.querySelector('.nav-link.text-indigo-600');
+
+          if (!hasActiveChild) {
+            dropdownButton?.classList.remove('text-indigo-600', 'dark:text-indigo-400');
+            dropdownButton?.classList.add('text-slate-600', 'dark:text-slate-400');
+          }
+        }
       }
     });
   }
@@ -171,6 +228,40 @@ import ThemeToggle from './ThemeToggle.astro';
   }
 
   mobileMenuButton?.addEventListener('click', toggleMenu);
+
+  // Dropdown accessibility and interaction
+  const dropdownContainers = document.querySelectorAll('.dropdown-container');
+  dropdownContainers.forEach(container => {
+    const button = container.querySelector('button');
+
+    container.addEventListener('mouseenter', () => {
+      button?.setAttribute('aria-expanded', 'true');
+    });
+
+    container.addEventListener('mouseleave', () => {
+      button?.setAttribute('aria-expanded', 'false');
+    });
+
+    button?.addEventListener('focus', () => {
+      button?.setAttribute('aria-expanded', 'true');
+    });
+
+    button?.addEventListener('blur', (e) => {
+      const relatedTarget = (e as FocusEvent).relatedTarget as HTMLElement;
+      if (!container.contains(relatedTarget)) {
+        button?.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Close dropdown when a link is clicked (especially for anchors)
+    container.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        button?.setAttribute('aria-expanded', 'false');
+        // Force blur to hide dropdown if focus-within was keeping it open
+        (document.activeElement as HTMLElement)?.blur();
+      });
+    });
+  });
 
   // Close mobile menu on link click
   mobileNavLinks.forEach(link => {
