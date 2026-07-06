@@ -16,39 +16,27 @@ const { class: className, size = 40 } = Astro.props;
   xmlns:xlink="http://www.w3.org/1999/xlink"
 >
   <defs>
-    <!-- Top text path (Center of green ring: radius 41.25) -->
     <path id="topPath" d="M 8.75,50 A 41.25,41.25 0 0,1 91.25,50" />
-    <!-- Bottom text path (Center of green ring: radius 41.25) -->
     <path id="bottomPath" d="M 8.75,50 A 41.25,41.25 0 0,0 91.25,50" />
   </defs>
 
-  <!-- Outer Ring (Green) -->
   <circle cx="50" cy="50" r="49" fill="#77BA55" />
-
-  <!-- Outermost Border (Thin White) -->
   <circle cx="50" cy="50" r="49.5" fill="none" stroke="white" stroke-width="0.5" />
-
-  <!-- Middle Border (Thin White) -->
   <circle cx="50" cy="50" r="33.5" fill="none" stroke="white" stroke-width="0.5" />
-
-  <!-- Inner Circle (Dark Slate Blue) -->
   <circle cx="50" cy="50" r="33.25" fill="#27496D" />
 
-  <!-- Stars (Separators) -->
-  <!-- Left Star: rotated outwards -->
-  <g transform="translate(8.75, 50) rotate(-90)">
+  <!-- Stars (Separators) - Pointing Upwards as per JPG -->
+  <g transform="translate(8.75, 50)">
     <polygon points="0,-2.5 0.7,-0.8 2.4,-0.8 1,0.5 1.5,2.2 0,1.2 -1.5,2.2 -1,0.5 -2.4,-0.8 -0.7,-0.8" fill="white" />
   </g>
-  <!-- Right Star: rotated outwards -->
-  <g transform="translate(91.25, 50) rotate(90)">
+  <g transform="translate(91.25, 50)">
     <polygon points="0,-2.5 0.7,-0.8 2.4,-0.8 1,0.5 1.5,2.2 0,1.2 -1.5,2.2 -1,0.5 -2.4,-0.8 -0.7,-0.8" fill="white" />
   </g>
 
-  <!-- Circular Text -->
   <text
     fill="white"
     font-family="'Montserrat', 'Inter', system-ui, sans-serif"
-    font-weight="bold"
+    font-weight="800"
     font-size="6.8"
     letter-spacing="0.4"
   >
@@ -60,7 +48,7 @@ const { class: className, size = 40 } = Astro.props;
   <text
     fill="white"
     font-family="'Montserrat', 'Inter', system-ui, sans-serif"
-    font-weight="bold"
+    font-weight="700"
     font-size="3.4"
     letter-spacing="0.2"
   >
@@ -69,65 +57,50 @@ const { class: className, size = 40 } = Astro.props;
     </textPath>
   </text>
 
-  <!-- Inner Circle Icons -->
-
-  <!-- 1. Open Book (Bottom Base) -->
+  <!-- Inner Icons -->
   <g fill="white">
+    <!-- Book -->
     <path d="M 50,81 Q 65,76 78,81 L 78,68 Q 65,63 50,68 Z" />
     <path d="M 50,81 Q 35,76 22,81 L 22,68 Q 35,63 50,68 Z" />
-    <!-- Stylized page layers -->
-    <path d="M 50,71 Q 65,66 78,71" fill="none" stroke="#27496D" stroke-width="0.3" />
-    <path d="M 50,74 Q 65,69 78,74" fill="none" stroke="#27496D" stroke-width="0.3" />
-    <path d="M 50,71 Q 35,66 22,71" fill="none" stroke="#27496D" stroke-width="0.3" />
-    <path d="M 50,74 Q 35,69 22,74" fill="none" stroke="#27496D" stroke-width="0.3" />
-  </g>
+    <path d="M 50,70 Q 65,65 78,70" fill="none" stroke="#27496D" stroke-width="0.3" />
+    <path d="M 50,73 Q 65,68 78,73" fill="none" stroke="#27496D" stroke-width="0.3" />
+    <path d="M 50,76 Q 65,71 78,76" fill="none" stroke="#27496D" stroke-width="0.3" />
+    <path d="M 50,70 Q 35,65 22,70" fill="none" stroke="#27496D" stroke-width="0.3" />
+    <path d="M 50,73 Q 35,68 22,73" fill="none" stroke="#27496D" stroke-width="0.3" />
+    <path d="M 50,76 Q 35,71 22,76" fill="none" stroke="#27496D" stroke-width="0.3" />
 
-  <!-- 2. Desktop Monitor -->
-  <g fill="white">
-    <!-- Stand -->
+    <!-- Monitor -->
     <path d="M 47,63 L 53,63 L 55,67 L 45,67 Z" />
-    <!-- Screen Outer -->
     <rect x="33" y="42" width="34" height="21" rx="1" />
-    <!-- Inner Screen -->
     <rect x="34.5" y="43.5" width="31" height="16" fill="#27496D" />
 
-    <!-- 3. Graduation Cap (Inside Monitor) -->
+    <!-- Cap -->
     <g transform="translate(50, 51.5) scale(0.4) translate(-50, -50)">
-      <path d="M 34,44 L 50,36 L 66,44 L 50,52 Z" fill="white" />
-      <path d="M 41,47 L 41,52 Q 50,55 59,52 L 59,47" fill="white" />
+      <path d="M 34,44 L 50,36 L 66,44 L 50,52 Z" />
+      <path d="M 41,47 L 41,52 Q 50,55 59,52 L 59,47" />
       <line x1="66" y1="44" x2="66" y2="52" stroke="white" stroke-width="1.2" />
     </g>
-  </g>
 
-  <!-- 4. Top Connections & Wi-Fi -->
-  <g fill="white">
-    <!-- Wi-Fi Icon -->
+    <!-- Wi-Fi & Circuitry -->
     <circle cx="50" cy="39" r="0.8" />
     <path d="M 46.5,37 Q 50,34.5 53.5,37" fill="none" stroke="white" stroke-width="0.6" stroke-linecap="round" />
     <path d="M 44,35 Q 50,30.5 56,35" fill="none" stroke="white" stroke-width="0.6" stroke-linecap="round" />
-
-    <!-- Central Node -->
     <circle cx="50" cy="21" r="1.8" />
-    <!-- Central Dotted Line -->
     <line x1="50" y1="32" x2="50" y2="23" stroke="white" stroke-width="0.7" stroke-dasharray="1,1" />
 
-    <!-- Circuitry -->
     <g stroke="white" stroke-width="0.5" fill="none">
-      <!-- Top Right -->
-      <path d="M 50,27 L 65,27 L 70,22" />
-      <circle cx="70" cy="22" r="1" fill="white" stroke="none" />
-
-      <!-- Top Left -->
-      <path d="M 50,27 L 35,27 L 30,22" />
-      <circle cx="30" cy="22" r="1" fill="white" stroke="none" />
-
-      <!-- Middle Right -->
-      <path d="M 50,30.5 L 68,30.5 L 73,34.5" />
-      <circle cx="73" cy="34.5" r="1" fill="white" stroke="none" />
-
-      <!-- Middle Left -->
-      <path d="M 50,30.5 L 32,30.5 L 27,34.5" />
-      <circle cx="27" cy="34.5" r="1" fill="white" stroke="none" />
+      <path d="M 50,25 L 62,25 L 68,19" />
+      <circle cx="68" cy="19" r="1" fill="white" stroke="none" />
+      <path d="M 50,25 L 38,25 L 32,19" />
+      <circle cx="32" cy="19" r="1" fill="white" stroke="none" />
+      <path d="M 50,31 L 68,31 L 74,31" />
+      <circle cx="74" cy="31" r="1" fill="white" stroke="none" />
+      <path d="M 50,31 L 32,31 L 26,31" />
+      <circle cx="26" cy="31" r="1" fill="white" stroke="none" />
+      <path d="M 50,37 L 65,37 L 71,43" />
+      <circle cx="71" cy="43" r="1" fill="white" stroke="none" />
+      <path d="M 50,37 L 35,37 L 29,43" />
+      <circle cx="29" cy="43" r="1" fill="white" stroke="none" />
     </g>
   </g>
 </svg>
