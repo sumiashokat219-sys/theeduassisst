@@ -1,4 +1,6 @@
 ---
+import { POLAR_CHECKOUT_URLS } from '../constants/polar';
+
 const plans = [
   {
     name: "Starter",
@@ -12,7 +14,8 @@ const plans = [
       "30 Days Email Support",
       "Standard AI Content Tools"
     ],
-    buttonText: "Pay with ",
+    buttonText: "Buy Now",
+    checkoutUrl: POLAR_CHECKOUT_URLS.starter,
     popular: false
   },
   {
@@ -27,7 +30,8 @@ const plans = [
       "90 Days Priority Support",
       "Premium AI Content Support"
     ],
-    buttonText: "Pay with ",
+    buttonText: "Buy Now",
+    checkoutUrl: POLAR_CHECKOUT_URLS.professional,
     popular: true
   },
   {
@@ -42,7 +46,8 @@ const plans = [
       "Lifetime Priority Support",
       "Custom AI Integrations"
     ],
-    buttonText: "Pay with ",
+    buttonText: "Buy Now",
+    checkoutUrl: POLAR_CHECKOUT_URLS.enterprise,
     popular: false
   }
 ];
@@ -108,21 +113,15 @@ const comparison = [
             ))}
           </ul>
 
-          <button
-            class="gpay-btn w-full py-4 px-6 rounded-2xl bg-black text-white dark:bg-white dark:text-black font-bold flex items-center justify-center gap-2.5 hover:opacity-90 transition-all active:scale-[0.98] group/btn"
-            aria-label={`Pay with Google Pay for ${plan.name} plan`}
+          <a
+            href={plan.checkoutUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="pricing-btn w-full py-4 px-6 rounded-2xl bg-black text-white dark:bg-white dark:text-black font-bold flex items-center justify-center gap-2.5 hover:opacity-90 transition-all active:scale-[0.98] group/btn"
+            aria-label={`Buy Now - ${plan.name} Plan`}
           >
-            <span class="text-sm uppercase tracking-wide opacity-90">Pay with</span>
-            <div class="flex items-center gap-1.5">
-              <svg class="h-5 w-5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22.56 12.25c0-.85-.07-1.71-.22-2.55H12v4.84h5.92c-.26 1.37-1.04 2.53-2.21 3.31v3.1h3.58c2.08-1.92 3.27-4.74 3.27-7.7z" fill="#4285F4"/>
-                <path d="M12 23c3.15 0 5.8-1.05 7.73-2.85l-3.58-3.1c-1.05.7-2.4 1.1-4.15 1.1-3.2 0-5.9-2.16-6.87-5.06H1.54v3.2C3.55 20.18 7.59 23 12 23z" fill="#34A853"/>
-                <path d="M5.13 13.09c-.25-.74-.4-1.53-.4-2.34s.15-1.6.4-2.34V5.21H1.54C.56 7.16 0 9.51 0 12s.56 4.84 1.54 6.79l3.59-3.7z" fill="#FBBC04"/>
-                <path d="M12 5.38c1.72 0 3.25.59 4.47 1.76l3.35-3.35C17.79 1.72 15.14.5 12 .5 7.59.5 3.55 3.32 1.54 7.21l3.59 2.14c.97-2.9 3.67-5.06 12-5.06z" fill="#EA4335"/>
-              </svg>
-              <span class="text-xl font-semibold tracking-tight">Pay</span>
-            </div>
-          </button>
+            {plan.buttonText}
+          </a>
         </div>
       ))}
     </div>
@@ -158,72 +157,16 @@ const comparison = [
       </div>
     </div>
   </div>
-
-  <!-- Demo Modal -->
-  <div id="gpay-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-6 opacity-0 pointer-events-none transition-all duration-300">
-    <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" id="modal-overlay"></div>
-    <div class="relative bg-white dark:bg-slate-900 rounded-3xl p-8 max-w-md w-full shadow-2xl transform scale-95 transition-all duration-300" id="modal-content">
-      <div class="w-16 h-16 bg-indigo-100 dark:bg-indigo-900/50 rounded-2xl flex items-center justify-center mb-6 mx-auto">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      </div>
-      <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-2 text-center">Google Pay Integration Coming Soon</h4>
-      <p class="text-slate-600 dark:text-slate-400 text-center mb-8">
-        This is a frontend demonstration of the pricing layout. Real payment processing is currently in development.
-      </p>
-      <button id="close-modal" class="w-full py-4 bg-slate-900 dark:bg-white text-white dark:text-black font-bold rounded-2xl hover:opacity-90 transition-all">
-        Got it, thanks!
-      </button>
-    </div>
-  </div>
 </section>
-
-<script>
-  const gpayButtons = document.querySelectorAll('.gpay-btn');
-  const modal = document.getElementById('gpay-modal');
-  const modalContent = document.getElementById('modal-content');
-  const modalOverlay = document.getElementById('modal-overlay');
-  const closeModal = document.getElementById('close-modal');
-
-  function openModal() {
-    modal?.classList.remove('opacity-0', 'pointer-events-none');
-    modalContent?.classList.remove('scale-95');
-    modalContent?.classList.add('scale-100');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function hideModal() {
-    modal?.classList.add('opacity-0', 'pointer-events-none');
-    modalContent?.classList.remove('scale-100');
-    modalContent?.classList.add('scale-95');
-    document.body.style.overflow = '';
-  }
-
-  gpayButtons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      openModal();
-    });
-  });
-
-  closeModal?.addEventListener('click', hideModal);
-  modalOverlay?.addEventListener('click', hideModal);
-
-  // Close on Escape key
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') hideModal();
-  });
-</script>
 
 <style>
   @reference "tailwindcss";
 
-  .gpay-btn:hover {
+  .pricing-btn:hover {
     box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.5);
   }
 
-  .dark .gpay-btn:hover {
+  .dark .pricing-btn:hover {
     box-shadow: 0 10px 20px -10px rgba(255, 255, 255, 0.2);
   }
 
