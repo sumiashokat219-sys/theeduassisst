@@ -1,0 +1,251 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+import { PLANS } from '../constants/plans';
+
+const defaultPlan = PLANS[0];
+
+const countries = [
+  "United States", "United Kingdom", "Canada", "Australia", "Germany",
+  "France", "India", "Japan", "Brazil", "Other"
+];
+---
+
+<Layout title="Checkout | TheEduAssist">
+  <main class="pt-32 pb-24 min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="mb-12 text-center reveal-up">
+        <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
+          Complete Your Order
+        </h1>
+        <p class="text-slate-600 dark:text-slate-400">
+          You're just one step away from launching your online course.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <!-- Main Form Section -->
+        <div class="lg:col-span-2 space-y-8">
+          <!-- Customer Info -->
+          <section class="bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-sm border border-slate-100 dark:border-slate-800 reveal-up">
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
+              <span class="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-sm">1</span>
+              Customer Information
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label for="name" class="text-sm font-medium text-slate-700 dark:text-slate-300">Full Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  placeholder="John Doe"
+                  class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all"
+                />
+              </div>
+              <div class="space-y-2">
+                <label for="email" class="text-sm font-medium text-slate-700 dark:text-slate-300">Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="john@example.com"
+                  class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all"
+                />
+              </div>
+              <div class="space-y-2 md:col-span-2">
+                <label for="country" class="text-sm font-medium text-slate-700 dark:text-slate-300">Country</label>
+                <select
+                  id="country"
+                  name="country"
+                  class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all"
+                >
+                  {countries.map(country => (
+                    <option value={country}>{country}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </section>
+
+          <!-- Payment Method -->
+          <section class="bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-sm border border-slate-100 dark:border-slate-800 reveal-up" style="transition-delay: 100ms">
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
+              <span class="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-sm">2</span>
+              Payment Method
+            </h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+              {['Google Pay', 'Apple Pay', 'Visa', 'Mastercard'].map((method) => (
+                <button type="button" class="payment-method-btn p-4 rounded-2xl border-2 border-slate-100 dark:border-slate-800 hover:border-indigo-500 dark:hover:border-indigo-500 transition-all flex flex-col items-center gap-2 group">
+                  <div class="w-10 h-10 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                    {method === 'Google Pay' && <span class="text-lg font-bold">G</span>}
+                    {method === 'Apple Pay' && <span class="text-lg font-bold">A</span>}
+                    {method === 'Visa' && <span class="text-lg font-bold italic">V</span>}
+                    {method === 'Mastercard' && <span class="text-lg font-bold">M</span>}
+                  </div>
+                  <span class="text-xs font-semibold text-slate-600 dark:text-slate-400">{method}</span>
+                </button>
+              ))}
+            </div>
+
+            <div class="p-4 rounded-2xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800/30 flex items-start gap-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-600 dark:text-amber-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 15c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              <p class="text-sm text-amber-800 dark:text-amber-400">
+                <strong>Demo Checkout</strong> – No real payment will be processed. This page demonstrates the payment flow only.
+              </p>
+            </div>
+          </section>
+
+          <button
+            id="pay-now-btn"
+            class="w-full py-5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-lg shadow-indigo-200 dark:shadow-none transition-all active:scale-[0.98] flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
+          >
+            <span>Pay Now</span>
+            <div id="loading-spinner" class="hidden w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+          </button>
+        </div>
+
+        <!-- Order Summary -->
+        <aside class="space-y-6">
+          <div class="bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-sm border border-slate-100 dark:border-slate-800 sticky top-24 reveal-up" style="transition-delay: 200ms">
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-6">Order Summary</h2>
+
+            <div id="order-details" class="space-y-4 mb-8">
+              <div class="flex justify-between items-start gap-4">
+                <div>
+                  <p id="summary-plan-name" class="font-bold text-slate-900 dark:text-white">{defaultPlan.name} Package</p>
+                  <p id="summary-plan-desc" class="text-sm text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">{defaultPlan.description}</p>
+                </div>
+                <span id="summary-plan-price" class="font-bold text-slate-900 dark:text-white">{defaultPlan.price}</span>
+              </div>
+              <div class="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-2">
+                <div class="flex justify-between text-sm">
+                  <span class="text-slate-500 dark:text-slate-400">Subtotal</span>
+                  <span id="summary-subtotal" class="text-slate-900 dark:text-white font-medium">{defaultPlan.price}</span>
+                </div>
+                <div class="flex justify-between text-sm">
+                  <span class="text-slate-500 dark:text-slate-400">Tax</span>
+                  <span class="text-slate-900 dark:text-white font-medium">$0.00</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-6 border-t border-slate-100 dark:border-slate-800 flex justify-between items-center mb-8">
+              <span class="text-lg font-bold text-slate-900 dark:text-white">Total</span>
+              <span id="summary-total" class="text-2xl font-extrabold text-indigo-600 dark:text-indigo-400">{defaultPlan.price}</span>
+            </div>
+
+            <div class="space-y-4">
+              <p class="text-xs font-bold uppercase tracking-wider text-slate-400">What's included:</p>
+              <ul id="summary-features" class="space-y-3">
+                {defaultPlan.features.slice(0, 4).map(feature => (
+                  <li class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-500" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  import { PLANS } from '../constants/plans';
+
+  // Get elements
+  const summaryName = document.getElementById('summary-plan-name');
+  const summaryDesc = document.getElementById('summary-plan-desc');
+  const summaryPrice = document.getElementById('summary-plan-price');
+  const summarySubtotal = document.getElementById('summary-subtotal');
+  const summaryTotal = document.getElementById('summary-total');
+  const summaryFeatures = document.getElementById('summary-features');
+
+  const payBtn = document.getElementById('pay-now-btn') as HTMLButtonElement;
+  const spinner = document.getElementById('loading-spinner');
+  const nameInput = document.getElementById('name') as HTMLInputElement;
+  const emailInput = document.getElementById('email') as HTMLInputElement;
+  const paymentBtns = document.querySelectorAll('.payment-method-btn');
+
+  // Hydrate from URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const planId = urlParams.get('plan') || 'starter';
+  const plan = PLANS.find(p => p.id === planId) || PLANS[0];
+
+  // Update UI
+  if (summaryName) summaryName.innerText = `${plan.name} Package`;
+  if (summaryDesc) summaryDesc.innerText = plan.description;
+  if (summaryPrice) summaryPrice.innerText = plan.price;
+  if (summarySubtotal) summarySubtotal.innerText = plan.price;
+  if (summaryTotal) summaryTotal.innerText = plan.price;
+
+  if (summaryFeatures) {
+    summaryFeatures.innerHTML = plan.features.slice(0, 4).map(feature => `
+      <li class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-500" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+        </svg>
+        ${feature}
+      </li>
+    `).join('');
+  }
+
+  // Update document title
+  document.title = `Checkout - ${plan.name} | TheEduAssist`;
+
+  paymentBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      paymentBtns.forEach(b => b.classList.remove('border-indigo-500', 'bg-indigo-50/50', 'dark:bg-indigo-900/20'));
+      btn.classList.add('border-indigo-500', 'bg-indigo-50/50', 'dark:bg-indigo-900/20');
+    });
+  });
+
+  payBtn?.addEventListener('click', async () => {
+    // Basic validation
+    if (!nameInput.value || !emailInput.value) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
+    if (!emailInput.checkValidity()) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
+    // Show loading state
+    payBtn.disabled = true;
+    spinner?.classList.remove('hidden');
+    const span = payBtn.querySelector('span');
+    if (span) span.innerText = 'Processing...';
+
+    // Simulate payment processing
+    await new Promise(resolve => setTimeout(resolve, 2500));
+
+    // Redirect to success page
+    const params = new URLSearchParams({
+      plan: plan.id,
+      name: nameInput.value,
+      price: plan.price
+    });
+    window.location.href = `/success?${params.toString()}`;
+  });
+</script>
+
+<style>
+  @reference "../styles/global.css";
+
+  .payment-method-btn {
+    @apply bg-white dark:bg-slate-900;
+  }
+</style>

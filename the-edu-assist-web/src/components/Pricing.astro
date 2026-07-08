@@ -1,65 +1,5 @@
 ---
-import { POLAR_CHECKOUT_URLS } from '../constants/polar';
-
-const plans = [
-  {
-    name: "Starter",
-    price: "$499",
-    description: "Perfect for experts just getting started with their first online course.",
-    features: [
-      "1 Course Curriculum Design",
-      "Technical Platform Setup",
-      "Basic Email Automation",
-      "1 Landing Page Design",
-      "30 Days Email Support",
-      "Standard AI Content Tools"
-    ],
-    buttonText: "Buy Now",
-    checkoutUrl: POLAR_CHECKOUT_URLS.starter,
-    popular: false
-  },
-  {
-    name: "Professional",
-    price: "$1,299",
-    description: "The complete solution for scaling your e-learning business to the next level.",
-    features: [
-      "3 Course Curriculum Designs",
-      "Advanced Kajabi/LMS Setup",
-      "Full Funnel Automation",
-      "3 Pro Landing Pages",
-      "90 Days Priority Support",
-      "Premium AI Content Support"
-    ],
-    buttonText: "Buy Now",
-    checkoutUrl: POLAR_CHECKOUT_URLS.professional,
-    popular: true
-  },
-  {
-    name: "Enterprise",
-    price: "Custom",
-    description: "Bespoke solutions for established institutions and high-volume creators.",
-    features: [
-      "Unlimited Course Designs",
-      "Custom Platform Development",
-      "Dedicated Account Manager",
-      "Unlimited Funnels & Pages",
-      "Lifetime Priority Support",
-      "Custom AI Integrations"
-    ],
-    buttonText: "Buy Now",
-    checkoutUrl: POLAR_CHECKOUT_URLS.enterprise,
-    popular: false
-  }
-];
-
-const comparison = [
-  { feature: "Curriculum Design", starter: "1 Course", pro: "3 Courses", enterprise: "Unlimited" },
-  { feature: "Technical Setup", starter: "Basic", pro: "Advanced", enterprise: "Custom" },
-  { feature: "Landing Pages", starter: "1 Page", pro: "3 Pages", enterprise: "Unlimited" },
-  { feature: "Support", starter: "30 Days", pro: "90 Days Priority", enterprise: "Dedicated Manager" },
-  { feature: "AI Support", starter: "Standard", pro: "Premium", enterprise: "Custom" },
-  { feature: "Automation", starter: "Basic", pro: "Full Funnel", enterprise: "Advanced Custom" },
-];
+import { PLANS, COMPARISON } from '../constants/plans';
 ---
 
 <section id="pricing" class="py-24 bg-white dark:bg-slate-950 transition-colors duration-300 overflow-hidden">
@@ -74,7 +14,7 @@ const comparison = [
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
-      {plans.map((plan, i) => (
+      {PLANS.map((plan, i) => (
         <div
           class={`relative p-8 rounded-3xl transition-all duration-500 reveal-up hover-lift flex flex-col ${
             plan.popular
@@ -114,9 +54,7 @@ const comparison = [
           </ul>
 
           <a
-            href={plan.checkoutUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={`/checkout?plan=${plan.id}`}
             class="pricing-btn w-full py-4 px-6 rounded-2xl bg-black text-white dark:bg-white dark:text-black font-bold flex items-center justify-center gap-2.5 hover:opacity-90 transition-all active:scale-[0.98] group/btn"
             aria-label={`Buy Now - ${plan.name} Plan`}
           >
@@ -144,7 +82,7 @@ const comparison = [
             </tr>
           </thead>
           <tbody class="divide-y divide-slate-50 dark:divide-slate-900">
-            {comparison.map((row) => (
+            {COMPARISON.map((row) => (
               <tr>
                 <td class="py-5 px-4 text-slate-700 dark:text-slate-300 font-medium">{row.feature}</td>
                 <td class="py-5 px-4 text-slate-500 dark:text-slate-400 text-sm">{row.starter}</td>
