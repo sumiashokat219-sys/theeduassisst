@@ -1,0 +1,105 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+import { PLANS } from '../constants/plans';
+
+const defaultPlan = PLANS[0];
+---
+
+<Layout title="Payment Successful | TheEduAssist">
+  <main class="pt-32 pb-24 min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
+    <div class="max-w-2xl mx-auto px-6">
+      <div class="bg-white dark:bg-slate-900 rounded-3xl p-8 md:p-12 shadow-sm border border-slate-100 dark:border-slate-800 text-center reveal-up">
+        <!-- Success Icon -->
+        <div class="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto mb-8 animate-bounce">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-emerald-600 dark:text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+
+        <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-4">
+          Payment Successful
+        </h1>
+        <p class="text-slate-600 dark:text-slate-400 mb-10">
+          Thank you for choosing TheEduAssist. Your journey to a world-class online course starts now.
+        </p>
+
+        <!-- Order Details -->
+        <div class="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-6 mb-10 text-left space-y-4">
+          <div class="flex justify-between items-center pb-4 border-b border-slate-200 dark:border-slate-700">
+            <span class="text-sm text-slate-500 dark:text-slate-400 font-medium">Package</span>
+            <span id="success-plan-name" class="text-slate-900 dark:text-white font-bold">{defaultPlan.name}</span>
+          </div>
+          <div class="flex justify-between items-center pb-4 border-b border-slate-200 dark:border-slate-700">
+            <span class="text-sm text-slate-500 dark:text-slate-400 font-medium">Price</span>
+            <span id="success-plan-price" class="text-slate-900 dark:text-white font-bold">{defaultPlan.price}</span>
+          </div>
+          <div class="flex justify-between items-center pb-4 border-b border-slate-200 dark:border-slate-700">
+            <span class="text-sm text-slate-500 dark:text-slate-400 font-medium">Demo Order ID</span>
+            <span id="success-order-id" class="text-slate-900 dark:text-white font-mono text-sm">TEA-000000</span>
+          </div>
+          <div class="flex justify-between items-center pb-4 border-b border-slate-200 dark:border-slate-700">
+            <span class="text-sm text-slate-500 dark:text-slate-400 font-medium">Date & Time</span>
+            <span id="success-date-time" class="text-slate-900 dark:text-white text-sm">--</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-sm text-slate-500 dark:text-slate-400 font-medium">Status</span>
+            <span class="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-xs font-bold rounded-full">Completed (Demo)</span>
+          </div>
+        </div>
+
+        <!-- Demo Notice -->
+        <div class="mb-10 p-4 rounded-2xl border border-indigo-100 dark:border-indigo-900/30 bg-indigo-50/50 dark:bg-indigo-900/10">
+          <p class="text-sm text-indigo-700 dark:text-indigo-400">
+            This is a demonstration checkout. No real payment has been processed.
+          </p>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/"
+            class="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl transition-all active:scale-[0.98]"
+          >
+            Return to Home
+          </a>
+          <a
+            href="/services"
+            class="px-8 py-4 bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 font-bold rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-700 transition-all active:scale-[0.98]"
+          >
+            View Services
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  import { PLANS } from '../constants/plans';
+
+  // Get elements
+  const successName = document.getElementById('success-plan-name');
+  const successPrice = document.getElementById('success-plan-price');
+  const successOrderId = document.getElementById('success-order-id');
+  const successDateTime = document.getElementById('success-date-time');
+
+  // Hydrate from URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const planId = urlParams.get('plan') || 'starter';
+  const price = urlParams.get('price') || '$499';
+  const plan = PLANS.find(p => p.id === planId) || PLANS[0];
+
+  const orderId = `TEA-${Math.floor(100000 + Math.random() * 900000)}`;
+  const dateTime = new Date().toLocaleString('en-US', {
+    dateStyle: 'medium',
+    timeStyle: 'short'
+  });
+
+  // Update UI
+  if (successName) successName.innerText = plan.name;
+  if (successPrice) successPrice.innerText = price;
+  if (successOrderId) successOrderId.innerText = orderId;
+  if (successDateTime) successDateTime.innerText = dateTime;
+</script>
